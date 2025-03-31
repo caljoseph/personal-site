@@ -90,12 +90,17 @@ const ProjectCard = styled.div`
 const ProjectImage = styled.div`
   height: 200px;
   background-color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
   
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  //img {
+  //  width: 100%;
+  //  height: 100%;
+  //  object-fit: cover;
+  //}
 `;
 
 const ProjectContent = styled.div`
@@ -240,66 +245,76 @@ const ProjectsPage = () => {
       <ProjectsContainer>
         <PageTitle>My Projects</PageTitle>
         <Subtitle>
-          A collection of academic, personal, and professional projects I've worked on. 
-          These projects showcase my skills and interests in various areas of computer science and software development.
+          A collection of academic, personal, and professional projects I've
+          worked on. These projects showcase my skills and interests in various
+          areas of computer science and software development.
         </Subtitle>
-        
+
         <FilterContainer>
-          <FilterButton 
-            $isActive={activeFilter === 'all'} 
+          <FilterButton
+            $isActive={activeFilter === 'all'}
             onClick={() => setActiveFilter('all')}
           >
             All Projects
           </FilterButton>
-          <FilterButton 
-            $isActive={activeFilter === 'web'} 
+          <FilterButton
+            $isActive={activeFilter === 'web'}
             onClick={() => setActiveFilter('web')}
           >
             Web Development
           </FilterButton>
-          <FilterButton 
-            $isActive={activeFilter === 'mobile'} 
+          <FilterButton
+            $isActive={activeFilter === 'mobile'}
             onClick={() => setActiveFilter('mobile')}
           >
             Mobile Apps
           </FilterButton>
-          <FilterButton 
-            $isActive={activeFilter === 'ai'} 
+          <FilterButton
+            $isActive={activeFilter === 'ai'}
             onClick={() => setActiveFilter('ai')}
           >
             AI & ML
           </FilterButton>
-          <FilterButton 
-            $isActive={activeFilter === 'systems'} 
+          <FilterButton
+            $isActive={activeFilter === 'systems'}
             onClick={() => setActiveFilter('systems')}
           >
             Systems & Algorithms
           </FilterButton>
         </FilterContainer>
-        
+
         <ProjectsGrid>
           {filteredProjects.length > 0 ? (
-            filteredProjects.map(project => (
+            filteredProjects.map((project) => (
               <ProjectCard key={project.id}>
                 <ProjectImage>
-                  <img src={project.image} alt={project.title} />
+                  {/*<img src={project.image} alt={project.title} />*/}
+                  <span>Project Image</span>
                 </ProjectImage>
                 <ProjectContent>
                   <ProjectTitle>{project.title}</ProjectTitle>
                   <ProjectDescription>{project.description}</ProjectDescription>
                   <TagContainer>
-                    {project.tags.map(tag => (
+                    {project.tags.map((tag) => (
                       <Tag key={tag}>{tag}</Tag>
                     ))}
                   </TagContainer>
                   <ProjectLinks>
                     {project.repoUrl && (
-                      <ProjectLink href={project.repoUrl} target="_blank" rel="noopener noreferrer">
+                      <ProjectLink
+                        href={project.repoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         GitHub <span>→</span>
                       </ProjectLink>
                     )}
                     {project.liveUrl && (
-                      <ProjectLink href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <ProjectLink
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Live Demo <span>→</span>
                       </ProjectLink>
                     )}
@@ -310,7 +325,10 @@ const ProjectsPage = () => {
           ) : (
             <EmptyState>
               <h3>No projects found</h3>
-              <p>There are currently no projects in this category. Check back later or try a different category.</p>
+              <p>
+                There are currently no projects in this category. Check back
+                later or try a different category.
+              </p>
             </EmptyState>
           )}
         </ProjectsGrid>

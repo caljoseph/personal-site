@@ -244,13 +244,12 @@ const AboutPage = () => {
         
         <ProfileSection>
           <ProfileImage>
-            <span>Profile Photo</span>
-            <Image 
-              src="/profile-placeholder.jpg" 
+            <Image
+              src="/images/profile-pic.jpg"
               alt="Caleb Bradshaw"
               fill
               sizes="300px"
-              style={{ objectFit: "cover", opacity: 0.7 }}
+              style={{ objectFit: "cover", opacity: 1 }}
               priority
             />
           </ProfileImage>
@@ -329,7 +328,7 @@ const AboutPage = () => {
           <SkillCard>
             <SkillTitle>
               <i className="fas fa-tools"></i>
-              Tools & Others
+              Various
             </SkillTitle>
             <SkillList>
               <li>Git & GitHub</li>

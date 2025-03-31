@@ -12,7 +12,7 @@ const HeroSection = styled.section`
   text-align: center;
   min-height: calc(100vh - 200px);
   padding: 0 2rem;
-  background-image: url('/background.svg');
+  background-image: url('/images/background.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -261,13 +261,13 @@ export default function Home() {
               <FeaturedCard key={index}>
                 <FeaturedImageContainer>
                   <span>{item.type === 'blog' ? 'Blog Post Image' : item.type === 'research' ? 'Research Image' : 'Project Image'}</span>
-                  <Image 
-                    src={item.image} 
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    style={{ objectFit: "cover", opacity: 0.7 }}
-                  />
+                  {/*<Image */}
+                  {/*  src={item.image} */}
+                  {/*  alt={item.title}*/}
+                  {/*  fill*/}
+                  {/*  sizes="(max-width: 768px) 100vw, 33vw"*/}
+                  {/*  style={{ objectFit: "cover", opacity: 0.7 }}*/}
+                  {/*/>*/}
                 </FeaturedImageContainer>
                 <FeaturedContent>
                   <FeaturedType>{item.type}</FeaturedType>

@@ -42,6 +42,7 @@ const StyledThemeToggle = styled(ThemeToggle)`
 const Logo = styled.a`
   font-size: 1.5rem;
   font-weight: 700;
+  font-family: 'Inclusive Sans', sans-serif;
   color: var(--text);
   text-decoration: none;
   cursor: pointer;

@@ -93,7 +93,7 @@ const CVEntry = styled.div`
     content: '';
     position: absolute;
     left: 0;
-    top: 0.5rem;
+    top: 0.75rem;
     width: 0.5rem;
     height: 0.5rem;
     background-color: var(--accent);
@@ -117,6 +117,7 @@ const EntryTitle = styled.h3`
   font-size: 1.5rem;
   color: var(--text);
   margin: 0;
+  line-height: 1.5;
   
   @media (max-width: 768px) {
     font-size: 1.25rem;
@@ -184,12 +185,16 @@ const SkillList = styled.ul`
     display: flex;
     align-items: center;
     color: var(--text-secondary);
+    line-height: 1.5;
     
     &:before {
       content: '•';
       color: var(--accent);
       margin-right: 0.5rem;
       font-size: 1.2rem;
+      line-height: 1;
+      display: inline-block;
+      transform: translateY(-1px);
     }
   }
 `;

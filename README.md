@@ -7,6 +7,7 @@ A modern, minimalist portfolio website built with Next.js, TypeScript, and Style
 - [Overview](#overview)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
+- [Features](#features)
 - [Customizing Content](#customizing-content)
 - [Modifying Appearance](#modifying-appearance)
 - [Deployment](#deployment)
@@ -17,6 +18,7 @@ A modern, minimalist portfolio website built with Next.js, TypeScript, and Style
 This portfolio website is designed to be a professional showcase of your skills, experience, and work. It features:
 
 - Responsive design for all devices
+- Dark and light mode with user preference persistence
 - Modern, minimalist aesthetic with smooth transitions and animations
 - Sections for CV/Resume, Projects, Research, and Blog
 - Easy to customize content and styling
@@ -60,9 +62,10 @@ yarn dev
 /
 ├── public/             # Static assets
 │   ├── fonts/          # Custom fonts
+│   ├── images/         # Image files like placeholders
 │   └── ...
 ├── pages/              # Next.js pages
-│   ├── _app.tsx        # Custom App component
+│   ├── _app.tsx        # Custom App component with theme initialization
 │   ├── _document.tsx   # Custom Document component
 │   ├── index.tsx       # Home page
 │   ├── about.tsx       # About page
@@ -70,13 +73,44 @@ yarn dev
 ├── components/         # Reusable components
 │   ├── Header.tsx      # Navigation header
 │   ├── Footer.tsx      # Page footer
-│   └── Layout.tsx      # Main layout wrapper
+│   ├── Layout.tsx      # Main layout wrapper
+│   ├── ThemeToggle.tsx # Dark/light mode toggle
+│   └── ...
 ├── styles/             # Global styles
-│   └── global.css      # Global CSS
+│   └── global.css      # Global CSS with theme variables
 ├── next.config.js      # Next.js configuration
 ├── package.json        # Project dependencies
 └── tsconfig.json       # TypeScript configuration
 ```
+
+## Features
+
+### Dark/Light Mode
+
+The site includes a fully functional dark and light mode:
+
+- Theme toggle accessible from the navigation bar
+- Preferences saved to localStorage for persistence
+- Smooth transition between themes
+- Themed CSS variables for consistent styling
+
+### Responsive Design
+
+- Mobile-first approach with responsive breakpoints
+- Collapsible navigation menu for mobile devices
+- Optimized layouts for tablets and desktop screens
+
+### Server-Side Rendering
+
+- Fast initial load using Next.js SSR
+- SEO-friendly page rendering
+- Improved performance with optimized image components
+
+### Featured Content Showcase
+
+- Highlighted projects, research, and blog posts on the home page
+- Configurable to feature any type of content (agnostic)
+- Visual cards with images, descriptions, and tags
 
 ## Customizing Content
 
@@ -87,8 +121,20 @@ Most of your personal information is stored directly in the page components. To 
 #### Home Page (`pages/index.tsx`)
 
 - Update your name, title, and personal description
-- Modify the "About Me" section text
-- Change the featured projects
+- Modify the featured items array to showcase your work:
+  ```tsx
+  const featuredItems: FeaturedItem[] = [
+    {
+      type: 'project',
+      title: 'Full-Stack Web Application',
+      description: 'A complete web application built with modern tools and frameworks.',
+      tags: ['React', 'TypeScript', 'Next.js'],
+      link: '/projects/web-app',
+      image: '/project-placeholder.jpg',
+    },
+    // More items...
+  ];
+  ```
 
 #### About Page (`pages/about.tsx`)
 
@@ -125,23 +171,42 @@ const projects = [
 
 ### Colors and Theme
 
-The site uses CSS variables for consistent theming. The primary color palette is defined in `styles/global.css`:
+The site uses CSS variables for consistent theming with both dark and light modes. The color palette is defined in `styles/global.css`:
 
 ```css
 :root {
-  --primary: #1e293b;      /* Primary background color (darker) */
-  --secondary: #334155;    /* Secondary background color (medium dark) */
-  --accent: #3b82f6;       /* Accent color (blue) */
-  --text: #f8fafc;         /* Primary text color (light) */
-  --text-secondary: #cbd5e1; /* Secondary text color (lighter gray) */
-  --background: #0f172a;   /* Main background color (darkest) */
+  /* Dark theme (default) */
+  --primary: #1e293b;
+  --secondary: #334155;
+  --accent: #3b82f6;
+  --text: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --background: #0f172a;
+  --muted: #64748b;
+  --border: #475569;
   /* ... other colors ... */
+}
+
+[data-theme='light'] {
+  --primary: #f1f5f9;
+  --secondary: #e2e8f0;
+  --accent: #3b82f6;
+  --text: #0f172a;
+  --text-secondary: #334155;
+  --background: #ffffff;
+  --muted: #94a3b8;
+  --border: #cbd5e1;
 }
 ```
 
 ### Typography
 
-The site uses styled-components for component styling, making it easy to modify the appearance of specific components.
+The site uses Google Fonts with a typography hierarchy:
+
+- Headers (h1-h6): **Inclusive Sans** - A modern, clean font for headings
+- Body text: **Nunito Sans** - A highly readable sans-serif font for content
+
+These fonts can be easily changed by updating the Google Fonts link in `_document.tsx` and the font-family properties in `styles/global.css`.
 
 ## Deployment
 
@@ -169,7 +234,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 - [Next.js](https://nextjs.org/) - React framework with SSR
 - [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
 - [Styled Components](https://styled-components.com/) - CSS-in-JS styling
-- [Font Awesome](https://fontawesome.com/) - Icons
 - [Vercel](https://vercel.com/) - Deployment platform
 
 ## License
