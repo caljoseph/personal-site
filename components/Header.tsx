@@ -44,6 +44,8 @@ const Logo = styled.a`
   color: var(--text);
   text-decoration: none;
   cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   
   &:hover {
     color: var(--accent);
@@ -74,6 +76,8 @@ const MenuItems = styled.ul<{ $isOpen: boolean }>`
 
 const MenuItem = styled.h1`
   margin-left: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   
   @media (max-width: 768px) {
     margin: 1rem 2rem;
@@ -94,7 +98,7 @@ const MenuLink = styled.a<{ $active: boolean }>`
     bottom: -5px;
     left: 0;
     width: ${({ $active }) => ($active ? '100%' : '0')};
-    height: 2px;
+    height: 3px;
     background-color: var(--accent);
     transition: width 0.3s ease;
   }

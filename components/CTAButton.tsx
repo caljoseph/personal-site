@@ -7,7 +7,6 @@ const CTAButton = styled.a`
   color: var(--background);
   font-weight: 600;
   border: 2px solid transparent;
-  border-radius: 1rem;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -17,10 +16,6 @@ const CTAButton = styled.a`
   &:hover {
     background-color: var(--accent);
     color: var(--background);
-  }
-
-  &:active {
-    transform: scale(0.98);
   }
 `;
 
