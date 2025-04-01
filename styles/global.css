@@ -4,8 +4,8 @@
   /* Fonts */
   --font-body: 'Nunito Sans', sans-serif;
   --font-heading: 'Inclusive Sans', sans-serif;
-  --tag-background: rgba(59, 130, 246, 0.1);
-  --tag-border: rgba(59, 130, 246, 0.2);
+  --tag-background: #dae6f8;
+  --tag-border: #ccccca;
 
 
   /* Dark theme colors */

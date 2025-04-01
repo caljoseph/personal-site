@@ -223,7 +223,9 @@ const BlogPage = ({ posts }: BlogPageProps) => {
                 ))}
               </TagContainer>
               <Link href={`/blog/${featuredPost.id}`} passHref legacyBehavior>
-                <CTAButton>Read Full Article</CTAButton>
+                <ReadMoreLink>
+                  Read Article <span>→</span>
+                </ReadMoreLink>
               </Link>
             </FeaturedPostContent>
           </FeaturedPost>

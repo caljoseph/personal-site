@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import TagContainer from './TagContainer';
 import Tag from './Tag';
+import Link from 'next/link';
 
 // Styled Components
 const Card = styled.div<{ $isFeature?: boolean }>`
@@ -13,7 +14,7 @@ const Card = styled.div<{ $isFeature?: boolean }>`
   height: 100%;
   display: flex;
   flex-direction: column;
-  
+
   ${({ $isFeature }) => !$isFeature && `
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -23,7 +24,7 @@ const Card = styled.div<{ $isFeature?: boolean }>`
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
     }
   `}
-  
+
   ${({ $isFeature }) => $isFeature && `
     @media (min-width: 768px) {
       flex-direction: row;
@@ -34,11 +35,11 @@ const Card = styled.div<{ $isFeature?: boolean }>`
 const ImageContainer = styled.div<{ $isFeature?: boolean }>`
   position: relative;
   background-color: var(--secondary);
-  
+
   ${({ $isFeature }) => !$isFeature && `
     height: 200px;
   `}
-  
+
   ${({ $isFeature }) => $isFeature && `
     height: 300px;
     
@@ -57,7 +58,7 @@ const ContentContainer = styled.div<{ $isFeature?: boolean }>`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  
+
   ${({ $isFeature }) => $isFeature && `
     @media (min-width: 768px) {
       flex: 1;
@@ -67,7 +68,7 @@ const ContentContainer = styled.div<{ $isFeature?: boolean }>`
 
 const TypeLabel = styled.span`
   display: inline-block;
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: var(--tag-background);
   color: var(--accent);
   border-radius: 9999px;
   padding: 0.25rem 0.75rem;
@@ -76,7 +77,7 @@ const TypeLabel = styled.span`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  border: 1px solid var(--tag-border);
   width: fit-content;
 `;
 
@@ -99,14 +100,33 @@ const Description = styled.p`
   margin-bottom: 1.5rem;
 `;
 
-const ButtonContainer = styled.div`
+const LinksContainer = styled.div`
   margin-top: auto;
   padding-top: 1.5rem;
   display: flex;
-  gap: 0.75rem;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
+  flex-direction: column;
+  gap: 1rem;
 `;
+
+const CardLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: #60a5fa;
+  }
+`;
+
+interface LinkItem {
+  text: string;
+  href: string;
+  showArrow?: boolean;
+}
 
 interface ContentCardProps {
   title: string;
@@ -117,49 +137,57 @@ interface ContentCardProps {
   type: 'blog' | 'project' | 'research';
   isFeature?: boolean;
   metaRight?: string;
-  buttons: ReactNode;
+  links?: LinkItem[];
 }
 
 const ContentCard: React.FC<ContentCardProps> = ({
-  title,
-  description,
-  imageSrc,
-  date,
-  tags,
-  type,
-  isFeature = false,
-  metaRight,
-  buttons,
-}) => {
+                                                   title,
+                                                   description,
+                                                   imageSrc,
+                                                   date,
+                                                   tags,
+                                                   type,
+                                                   isFeature = false,
+                                                   metaRight,
+                                                   links = [],
+                                                 }) => {
   return (
-    <Card $isFeature={isFeature}>
-      <ImageContainer $isFeature={isFeature}>
-        <Image
-          src={imageSrc}
-          alt={title}
-          fill
-          sizes={isFeature ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 350px"}
-          style={{ objectFit: "cover" }}
-        />
-      </ImageContainer>
-      <ContentContainer $isFeature={isFeature}>
-        <TypeLabel>{type}</TypeLabel>
-        <Title $isFeature={isFeature}>{title}</Title>
-        <MetaInfo>
-          <span>{date}</span>
-          {metaRight && <span>{metaRight}</span>}
-        </MetaInfo>
-        <Description>{description}</Description>
-        <TagContainer>
-          {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </TagContainer>
-        <ButtonContainer>
-          {buttons}
-        </ButtonContainer>
-      </ContentContainer>
-    </Card>
+      <Card $isFeature={isFeature}>
+        <ImageContainer $isFeature={isFeature}>
+          <Image
+              src={imageSrc}
+              alt={title}
+              fill
+              sizes={isFeature ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 350px"}
+              style={{ objectFit: "cover" }}
+          />
+        </ImageContainer>
+        <ContentContainer $isFeature={isFeature}>
+          <TypeLabel>{type}</TypeLabel>
+          <Title $isFeature={isFeature}>{title}</Title>
+          <MetaInfo>
+            <span>{date}</span>
+            {metaRight && <span>{metaRight}</span>}
+          </MetaInfo>
+          <Description>{description}</Description>
+          <TagContainer>
+            {tags.map((tag) => (
+                <Tag key={tag}>{tag}</Tag>
+            ))}
+          </TagContainer>
+          {links.length > 0 && (
+              <LinksContainer>
+                {links.map((link, index) => (
+                    <Link key={index} href={link.href} passHref legacyBehavior>
+                      <CardLink>
+                        {link.text} {link.showArrow !== false && <span>→</span>}
+                      </CardLink>
+                    </Link>
+                ))}
+              </LinksContainer>
+          )}
+        </ContentContainer>
+      </Card>
   );
 };
 

@@ -29,7 +29,7 @@ const HeroContent = styled.div`
 const HeroTitle = styled.h1`
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
-  
+
   @media (max-width: 768px) {
     font-size: 2.5rem;
   }
@@ -40,7 +40,7 @@ const HeroSubtitle = styled.h2`
   font-weight: 400;
   color: var(--text-secondary);
   margin-bottom: 2.5rem;
-  
+
   @media (max-width: 768px) {
     font-size: 1.25rem;
   }
@@ -51,7 +51,7 @@ const HeroButtons = styled.div`
   gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
-  
+
   @media (max-width: 768px) {
     flex-direction: column;
   }
@@ -59,7 +59,7 @@ const HeroButtons = styled.div`
 
 const SectionWrapper = styled.div`
   padding-bottom: 5rem;
-  
+
   @media (max-width: 768px) {
     padding: 3rem 1rem;
   }
@@ -75,7 +75,7 @@ const SectionTitle = styled.h2`
   margin-bottom: 3rem;
   position: relative;
   display: inline-block;
-  
+
   &:after {
     content: '';
     position: absolute;
@@ -85,7 +85,7 @@ const SectionTitle = styled.h2`
     height: 4px;
     background-color: var(--accent);
   }
-  
+
   @media (max-width: 768px) {
     font-size: 2rem;
   }
@@ -95,7 +95,7 @@ const FeaturedGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -131,63 +131,64 @@ export default function HomePage({ featuredContent }: HomePageProps) {
   ];
 
   return (
-    <Layout 
-      title="Caleb Bradshaw | Home"
-      description="Personal website of Caleb Bradshaw - Computer Science Student at BYU"
-    >
-      <HeroSection>
-        <HeroContent>
-          <TypewriterHeading text="Hello there! I'm Caleb." delay={300} />
-          <HeroSubtitle>
-            Computer Science student at BYU with a passion for web development, 
-            machine learning, and problem solving
-          </HeroSubtitle>
-          <HeroButtons>
-            <Link href="/projects" passHref legacyBehavior>
-              <CTAButton>View My Projects</CTAButton>
-            </Link>
-            <Link href="/about" passHref legacyBehavior>
-              <OutlineButton>Learn More About Me</OutlineButton>
-            </Link>
-          </HeroButtons>
-        </HeroContent>
-      </HeroSection>
-      
-      <SectionWrapper>
-        <SectionContent>
-          <SectionTitle>Featured Work</SectionTitle>
-          <FeaturedGrid>
-            {featuredItems.map(({ type, item, link }) => (
-              <ContentCard
-                key={`${type}-${item.id}`}
-                title={item.title}
-                description={item.description}
-                imageSrc={item.thumbnailUrl}
-                date={item.formattedDate}
-                tags={item.tags}
-                type={type}
-                metaRight={type === 'blog' ? (item as BlogPost).readingTime : undefined}
-                buttons={
-                  <CTAButton href={link}>
-                    {type === 'blog' 
-                      ? 'Read Post' 
-                      : type === 'project' 
-                        ? 'View Project' 
-                        : 'View Research'}
-                  </CTAButton>
-                }
-              />
-            ))}
-          </FeaturedGrid>
-        </SectionContent>
-      </SectionWrapper>
-    </Layout>
+      <Layout
+          title="Caleb Bradshaw | Home"
+          description="Personal website of Caleb Bradshaw - Computer Science Student at BYU"
+      >
+        <HeroSection>
+          <HeroContent>
+            <TypewriterHeading text="Hello there! I'm Caleb." delay={300} />
+            <HeroSubtitle>
+              Computer Science student at BYU with a passion for web development,
+              machine learning, and problem solving
+            </HeroSubtitle>
+            <HeroButtons>
+              <Link href="/projects" passHref legacyBehavior>
+                <CTAButton>View My Projects</CTAButton>
+              </Link>
+              <Link href="/about" passHref legacyBehavior>
+                <OutlineButton>Learn More About Me</OutlineButton>
+              </Link>
+            </HeroButtons>
+          </HeroContent>
+        </HeroSection>
+
+        <SectionWrapper>
+          <SectionContent>
+            <SectionTitle>Featured Work</SectionTitle>
+            <FeaturedGrid>
+              {featuredItems.map(({ type, item, link }) => (
+                  <ContentCard
+                      key={`${type}-${item.id}`}
+                      title={item.title}
+                      description={item.description}
+                      imageSrc={item.thumbnailUrl}
+                      date={item.formattedDate}
+                      tags={item.tags}
+                      type={type}
+                      metaRight={type === 'blog' ? (item as BlogPost).readingTime : undefined}
+                      links={[
+                        {
+                          text: type === 'blog'
+                              ? 'Read Post'
+                              : type === 'project'
+                                  ? 'View Project'
+                                  : 'View Research',
+                          href: link
+                        }
+                      ]}
+                  />
+              ))}
+            </FeaturedGrid>
+          </SectionContent>
+        </SectionWrapper>
+      </Layout>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const featuredContent = getFeaturedContent();
-  
+
   return {
     props: {
       featuredContent
