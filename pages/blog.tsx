@@ -2,6 +2,8 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Link from 'next/link';
+import TypewriterHeading from "@/components/TypewriterHeading";
+import TagContainer from "@/components/TagContainer";
 
 const BlogContainer = styled.div`
   max-width: 1200px;
@@ -150,13 +152,6 @@ const PostDescription = styled.p`
   margin-bottom: 1.5rem;
 `;
 
-const TagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
 const Tag = styled.span`
   background-color: rgba(59, 130, 246, 0.1);
   color: var(--accent);
@@ -261,7 +256,7 @@ const BlogPage = () => {
       description="Thoughts, tutorials, and insights on computer science, mathematics, and software development"
     >
       <BlogContainer>
-        <PageTitle>Blog</PageTitle>
+        <TypewriterHeading text="Blog " />
         <Subtitle>
           Thoughts, tutorials, and insights on computer science, mathematics, and software development. 
           I write about topics that interest me and share knowledge that might help others in the field.

@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Image from 'next/image';
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 const AboutContainer = styled.div`
   max-width: 1200px;
@@ -240,7 +241,7 @@ const AboutPage = () => {
       description="Learn more about Caleb Bradshaw, his background, skills, and interests"
     >
       <AboutContainer>
-        <PageTitle>About Me</PageTitle>
+        <TypewriterHeading text="About Me " />
         
         <ProfileSection>
           <ProfileImage>

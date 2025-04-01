@@ -5,12 +5,11 @@ import styled from 'styled-components';
 import ThemeToggle from './ThemeToggle';
 
 const HeaderContainer = styled.header`
-  background-color: var(--primary);
+  background-color: var(--background);
   padding: 1.5rem 2rem;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: padding 0.3s ease;
   
   @media (max-width: 768px) {
@@ -22,9 +21,8 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
 `;
+
 
 const NavActions = styled.div`
   display: flex;
@@ -40,8 +38,8 @@ const StyledThemeToggle = styled(ThemeToggle)`
 `;
 
 const Logo = styled.a`
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.75rem;
+  font-weight: 600;
   font-family: 'Inclusive Sans', sans-serif;
   color: var(--text);
   text-decoration: none;
@@ -74,7 +72,7 @@ const MenuItems = styled.ul<{ $isOpen: boolean }>`
   }
 `;
 
-const MenuItem = styled.li`
+const MenuItem = styled.h1`
   margin-left: 2rem;
   
   @media (max-width: 768px) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 const CVContainer = styled.div`
   max-width: 1200px;
@@ -44,17 +45,20 @@ const DownloadButton = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: var(--accent);
-  color: white;
-  padding: 0.75rem 2rem;
-  font-weight: 600;
-  border-radius: 0.25rem;
-  text-decoration: none;
   margin-bottom: 3rem;
-  transition: background-color 0.3s ease;
-  
+  padding: 0.75rem 2rem;
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+
   &:hover {
-    background-color: #2563eb;
+    background-color: var(--accent);
+    color: white;
   }
 `;
 
@@ -229,7 +233,7 @@ const CVPage = () => {
       description="Curriculum Vitae and professional experience of Caleb Bradshaw"
     >
       <CVContainer>
-        <PageTitle>Curriculum Vitae</PageTitle>
+        <TypewriterHeading text="Curriculum Vitae " />
         <Subtitle>
           A detailed overview of my academic and professional experience, skills, and achievements.
         </Subtitle>

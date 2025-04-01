@@ -57,7 +57,7 @@ type ThemeToggleProps = {
 };
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ className }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Initialize theme from localStorage on component mount
   useEffect(() => {

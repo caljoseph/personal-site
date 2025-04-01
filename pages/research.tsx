@@ -1,6 +1,9 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
+import TypewriterHeading from "@/components/TypewriterHeading";
+import Tag from "@/components/Tag";
+import TagContainer from "@/components/TagContainer";
 
 const ResearchContainer = styled.div`
   max-width: 1200px;
@@ -98,22 +101,6 @@ const ResearchDescription = styled.div`
   margin-bottom: 1.5rem;
 `;
 
-const TagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-const Tag = styled.span`
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--accent);
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-`;
-
 const ResearchLinks = styled.div`
   display: flex;
   gap: 1rem;
@@ -186,7 +173,7 @@ const ResearchPage = () => {
       description="Academic research in computer science and mathematics by Caleb Bradshaw"
     >
       <ResearchContainer>
-        <PageTitle>Research</PageTitle>
+        <TypewriterHeading text="Research " />
         <Subtitle>
           Exploring the intersection of computer science and mathematics through academic research. 
           My work focuses on algorithm optimization, computational complexity, and applied machine learning.

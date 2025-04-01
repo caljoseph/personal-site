@@ -3,6 +3,11 @@ import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
+import TypewriterHeading from "@/components/TypewriterHeading";
+import OutlineButton from "@/components/OutlineButton";
+import CTAButton from "@/components/CTAButton";
+import Tag from "@/components/Tag";
+import TagContainer from "@/components/TagContainer";
 
 const HeroSection = styled.section`
   display: flex;
@@ -12,7 +17,7 @@ const HeroSection = styled.section`
   text-align: center;
   min-height: calc(100vh - 200px);
   padding: 0 2rem;
-  background-image: url('/images/background.svg');
+  //background-image: url('/images/background.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -100,20 +105,13 @@ const FeaturedCard = styled.div`
 `;
 
 const FeaturedImageContainer = styled.div`
-  position: relative;
-  width: 100%;
   height: 200px;
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: var(--secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
-  font-weight: 500;
-  
-  span {
-    position: relative;
-    z-index: 1;
-  }
+  color: var(--text-secondary);
+  font-size: 1.2rem;
 `;
 
 const FeaturedContent = styled.div`
@@ -124,6 +122,11 @@ const FeaturedTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 1rem;
 `;
+
+const FeaturedDescription = styled.p`
+  margin-bottom: 1rem;
+`;
+
 
 const FeaturedType = styled.span`
   display: inline-block;
@@ -139,59 +142,6 @@ const FeaturedType = styled.span`
   border: 1px solid rgba(59, 130, 246, 0.2);
 `;
 
-const TagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 1rem 0;
-`;
-
-const Tag = styled.span`
-  display: inline-block;
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--accent);
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-`;
-
-const CTAButton = styled.a`
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  background-color: var(--accent);
-  color: white;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-  
-  &:hover {
-    background-color: #2563eb;
-  }
-`;
-
-const OutlineButton = styled.a`
-  display: inline-block;
-  padding: 0.75rem 2rem;
-  background-color: transparent;
-  border: 2px solid var(--accent);
-  color: var(--accent);
-  border-radius: 0.25rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  
-  &:hover {
-    background-color: var(--accent);
-    color: white;
-  }
-`;
-
 type FeaturedItem = {
   type: 'project' | 'research' | 'blog';
   title: string;
@@ -202,7 +152,6 @@ type FeaturedItem = {
 };
 
 export default function Home() {
-  // This could be fetched from an API or CMS in a real application
   const featuredItems: FeaturedItem[] = [
     {
       type: 'project',
@@ -237,7 +186,7 @@ export default function Home() {
     >
       <HeroSection>
         <HeroContent>
-          <HeroTitle>Hi, I&apos;m Caleb Bradshaw</HeroTitle>
+          <TypewriterHeading text="Hi, I'm Caleb " />
           <HeroSubtitle>
             Computer Science student at BYU with a passion for web development, 
             machine learning, and problem solving
@@ -261,8 +210,8 @@ export default function Home() {
               <FeaturedCard key={index}>
                 <FeaturedImageContainer>
                   <span>{item.type === 'blog' ? 'Blog Post Image' : item.type === 'research' ? 'Research Image' : 'Project Image'}</span>
-                  {/*<Image */}
-                  {/*  src={item.image} */}
+                  {/*<Image*/}
+                  {/*  src={item.image}*/}
                   {/*  alt={item.title}*/}
                   {/*  fill*/}
                   {/*  sizes="(max-width: 768px) 100vw, 33vw"*/}
@@ -272,7 +221,7 @@ export default function Home() {
                 <FeaturedContent>
                   <FeaturedType>{item.type}</FeaturedType>
                   <FeaturedTitle>{item.title}</FeaturedTitle>
-                  <p>{item.description}</p>
+                  <FeaturedDescription>{item.description}</FeaturedDescription>
                   <TagContainer>
                     {item.tags.map((tag, tagIndex) => (
                       <Tag key={tagIndex}>{tag}</Tag>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
+import TypewriterHeading from "@/components/TypewriterHeading";
+import Tag from "@/components/Tag";
+import TagContainer from "@/components/TagContainer";
 
 const ProjectsContainer = styled.div`
   max-width: 1200px;
@@ -118,22 +121,6 @@ const ProjectDescription = styled.p`
   margin-bottom: 1rem;
 `;
 
-const TagContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-const Tag = styled.span`
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--accent);
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-`;
-
 const ProjectLinks = styled.div`
   display: flex;
   gap: 1rem;
@@ -243,7 +230,7 @@ const ProjectsPage = () => {
       description="View Caleb Bradshaw's portfolio of projects spanning web development, machine learning, and more"
     >
       <ProjectsContainer>
-        <PageTitle>My Projects</PageTitle>
+        <TypewriterHeading text="My Projects " />
         <Subtitle>
           A collection of academic, personal, and professional projects I've
           worked on. These projects showcase my skills and interests in various
