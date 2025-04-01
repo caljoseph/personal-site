@@ -16,7 +16,7 @@ const theme = {
 export default function App({ Component, pageProps }: AppProps) {
   // Initialize theme on first render
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'dark';
+    const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
