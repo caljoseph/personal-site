@@ -1,22 +1,21 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const OutlineButton = styled.a`
   display: inline-block;
   padding: 0.75rem 2rem;
   background-color: transparent;
-  border: 3px solid var(--accent);
   color: var(--accent);
   font-weight: 600;
-  transition: all 0.3s ease;
-  cursor: pointer;
+  border: 2px solid var(--accent);
   text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 
-
-    &:hover {
+  &:hover {
     background-color: var(--accent);
-    color: white;
+    color: var(--background);
   }
 `;
 

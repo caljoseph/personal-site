@@ -8,7 +8,7 @@ A modern, minimalist portfolio website built with Next.js, TypeScript, and Style
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Features](#features)
-- [Customizing Content](#customizing-content)
+- [Content Management](#content-management)
 - [Modifying Appearance](#modifying-appearance)
 - [Deployment](#deployment)
 - [Technologies Used](#technologies-used)
@@ -21,6 +21,7 @@ This portfolio website is designed to be a professional showcase of your skills,
 - Dark and light mode with user preference persistence
 - Modern, minimalist aesthetic with smooth transitions and animations
 - Sections for CV/Resume, Projects, Research, and Blog
+- Markdown-based content management
 - Easy to customize content and styling
 - Server-side rendering with Next.js
 - Optimized for deployment on Vercel
@@ -60,30 +61,51 @@ yarn dev
 
 ```
 /
-├── public/             # Static assets
-│   ├── fonts/          # Custom fonts
-│   ├── images/         # Image files like placeholders
+├── content/             # Markdown content files
+│   ├── blog/            # Blog posts
+│   ├── projects/        # Project showcases
+│   └── research/        # Research publications
+├── lib/                 # Utility functions
+│   └── content.ts       # Content loading functions
+├── public/              # Static assets
+│   ├── fonts/           # Custom fonts
+│   ├── images/          # Image files
 │   └── ...
-├── pages/              # Next.js pages
-│   ├── _app.tsx        # Custom App component with theme initialization
-│   ├── _document.tsx   # Custom Document component
-│   ├── index.tsx       # Home page
-│   ├── about.tsx       # About page
+├── pages/               # Next.js pages
+│   ├── _app.tsx         # Custom App component
+│   ├── _document.tsx    # Custom Document component
+│   ├── index.tsx        # Home page
+│   ├── blog/            # Blog pages
+│   │   ├── index.tsx    # Blog listing page
+│   │   └── [id].tsx     # Dynamic blog post page
+│   ├── projects/        # Project pages
+│   │   ├── index.tsx    # Projects listing page
+│   │   └── [id].tsx     # Dynamic project page
+│   └── research/        # Research pages
+│       ├── index.tsx    # Research listing page
+│       └── [id].tsx     # Dynamic research page
+├── components/          # Reusable components
+│   ├── Header.tsx       # Navigation header
+│   ├── Footer.tsx       # Page footer
+│   ├── Layout.tsx       # Main layout wrapper
+│   ├── ThemeToggle.tsx  # Dark/light mode toggle
 │   └── ...
-├── components/         # Reusable components
-│   ├── Header.tsx      # Navigation header
-│   ├── Footer.tsx      # Page footer
-│   ├── Layout.tsx      # Main layout wrapper
-│   ├── ThemeToggle.tsx # Dark/light mode toggle
-│   └── ...
-├── styles/             # Global styles
-│   └── global.css      # Global CSS with theme variables
-├── next.config.js      # Next.js configuration
-├── package.json        # Project dependencies
-└── tsconfig.json       # TypeScript configuration
+├── styles/              # Global styles
+│   └── global.css       # Global CSS with theme variables
+├── CONTENT.md           # Content management guide
+├── next.config.js       # Next.js configuration
+├── package.json         # Project dependencies
+└── tsconfig.json        # TypeScript configuration
 ```
 
 ## Features
+
+### Content Management System
+
+- Markdown-based content for blog posts, projects, and research
+- Frontmatter metadata for each content type
+- Automatic thumbnail support for visual previews
+- Featured content system for highlighting important work
 
 ### Dark/Light Mode
 
@@ -100,72 +122,55 @@ The site includes a fully functional dark and light mode:
 - Collapsible navigation menu for mobile devices
 - Optimized layouts for tablets and desktop screens
 
-### Server-Side Rendering
+### Dynamic Page Generation
 
-- Fast initial load using Next.js SSR
-- SEO-friendly page rendering
-- Improved performance with optimized image components
+- Automatic page generation from Markdown content
+- SEO-friendly URLs and metadata
+- Rich content display with syntax highlighting and image optimization
 
 ### Featured Content Showcase
 
 - Highlighted projects, research, and blog posts on the home page
-- Configurable to feature any type of content (agnostic)
+- Automatic selection of featured content based on frontmatter
 - Visual cards with images, descriptions, and tags
 
-## Customizing Content
+## Content Management
 
-### Personal Information
+The website uses a Markdown-based content management system located in the `/content` directory. Detailed instructions for adding and managing content can be found in the [CONTENT.md](CONTENT.md) file.
 
-Most of your personal information is stored directly in the page components. To update:
+### Content Types
 
-#### Home Page (`pages/index.tsx`)
+1. **Blog Posts** - `/content/blog/`
+   - Technical tutorials, insights, and thoughts
+   - Support for code snippets, images, and rich formatting
 
-- Update your name, title, and personal description
-- Modify the featured items array to showcase your work:
-  ```tsx
-  const featuredItems: FeaturedItem[] = [
-    {
-      type: 'project',
-      title: 'Full-Stack Web Application',
-      description: 'A complete web application built with modern tools and frameworks.',
-      tags: ['React', 'TypeScript', 'Next.js'],
-      link: '/projects/web-app',
-      image: '/project-placeholder.jpg',
-    },
-    // More items...
-  ];
-  ```
+2. **Projects** - `/content/projects/`
+   - Showcases of your technical projects
+   - Fields for technologies, live demos, and GitHub repositories
 
-#### About Page (`pages/about.tsx`)
+3. **Research** - `/content/research/`
+   - Academic publications, presentations, and ongoing research
+   - Support for authors, venues, and research status
 
-- Update your personal biography
-- Modify skills in the skills grid
-- Change contact information
+### Adding New Content
 
-#### Projects Page (`pages/projects.tsx`)
+To add new content, create a Markdown file in the appropriate directory with frontmatter metadata. For example, a blog post:
 
-Projects are stored in an array of project objects. To add or edit projects:
+```markdown
+---
+title: "Getting Started with Next.js"
+date: "2023-03-15"
+description: "A comprehensive guide to building with Next.js"
+tags: ["React", "Next.js", "Web Development"]
+author: "Caleb Bradshaw"
+thumbnailUrl: "/images/project-placeholder.jpg"
+featured: true
+---
 
-```tsx
-// Projects data structure
-const projects = [
-  {
-    id: 1,
-    title: 'Algorithm Visualization Platform',
-    description: 'An interactive web application for visualizing...',
-    tags: ['React', 'TypeScript', 'D3.js'],
-    image: '/project-placeholder.jpg',
-    github: 'https://github.com',
-    demo: 'https://example.com',
-  },
-  // Add more projects here
-];
+# Your blog post content here...
 ```
 
-### Header & Footer
-
-- Update navigation links in `components/Header.tsx`
-- Modify footer information and social links in `components/Footer.tsx`
+See [CONTENT.md](CONTENT.md) for complete documentation.
 
 ## Modifying Appearance
 
@@ -234,6 +239,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 - [Next.js](https://nextjs.org/) - React framework with SSR
 - [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
 - [Styled Components](https://styled-components.com/) - CSS-in-JS styling
+- [gray-matter](https://github.com/jonschlinkert/gray-matter) - Markdown frontmatter parsing
+- [remark](https://github.com/remarkjs/remark) - Markdown processing
+- [date-fns](https://date-fns.org/) - Date formatting utilities
 - [Vercel](https://vercel.com/) - Deployment platform
 
 ## License

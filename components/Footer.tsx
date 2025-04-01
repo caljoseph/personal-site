@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
   background-color: var(--primary);
-  padding: 3rem 2rem;
+  padding: 2rem 2rem;
   margin-top: auto;
 `;
 
@@ -24,7 +24,6 @@ const FooterContent = styled.div`
 const FooterSection = styled.div`
   flex: 1;
   min-width: 250px;
-  margin-bottom: 2rem;
   
   @media (max-width: 768px) {
     margin-bottom: 2rem;

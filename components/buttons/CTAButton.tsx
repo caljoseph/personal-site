@@ -12,8 +12,9 @@ const CTAButton = styled.a`
   transition: all 0.25s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+ 
 
-  &:hover {
+    &:hover {
     background-color: var(--accent);
     color: var(--background);
   }

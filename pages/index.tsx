@@ -2,12 +2,12 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Link from 'next/link';
-import Image from 'next/image';
 import TypewriterHeading from "@/components/TypewriterHeading";
 import OutlineButton from "@/components/OutlineButton";
 import CTAButton from "@/components/CTAButton";
-import Tag from "@/components/Tag";
-import TagContainer from "@/components/TagContainer";
+import { GetStaticProps } from 'next';
+import { getFeaturedContent, BlogPost, Project, Research } from '@/lib/content';
+import ContentCard from '@/components/ContentCard';
 
 const HeroSection = styled.section`
   display: flex;
@@ -17,7 +17,6 @@ const HeroSection = styled.section`
   text-align: center;
   min-height: calc(100vh - 200px);
   padding: 0 2rem;
-  //background-image: url('/images/background.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,6 +59,10 @@ const HeroButtons = styled.div`
 
 const SectionWrapper = styled.div`
   padding-bottom: 5rem;
+  
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
 `;
 
 const SectionContent = styled.div`
@@ -82,101 +85,49 @@ const SectionTitle = styled.h2`
     height: 4px;
     background-color: var(--accent);
   }
+  
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 const FeaturedGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-`;
-
-const FeaturedCard = styled.div`
-  background-color: var(--primary);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid var(--border);
   
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const FeaturedImageContainer = styled.div`
-  height: 200px;
-  background-color: var(--secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
-`;
 
-const FeaturedContent = styled.div`
-  padding: 1.5rem;
-`;
+interface HomePageProps {
+  featuredContent: {
+    blogs: BlogPost[];
+    projects: Project[];
+    research: Research[];
+  }
+}
 
-const FeaturedTitle = styled.h3`
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-`;
-
-const FeaturedDescription = styled.p`
-  margin-bottom: 1rem;
-`;
-
-
-const FeaturedType = styled.span`
-  display: inline-block;
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--accent);
-  border-radius: 9999px;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.75rem;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-`;
-
-type FeaturedItem = {
-  type: 'project' | 'research' | 'blog';
-  title: string;
-  description: string;
-  tags: string[];
-  link: string;
-  image: string;
-};
-
-export default function Home() {
-  const featuredItems: FeaturedItem[] = [
-    {
-      type: 'project',
-      title: 'Full-Stack Web Application',
-      description: 'A complete web application built with modern tools and frameworks.',
-      tags: ['React', 'TypeScript', 'Next.js'],
-      link: '/projects/web-app',
-      image: '/project-placeholder.jpg',
-    },
-    {
-      type: 'research',
-      title: 'Machine Learning Research',
-      description: 'Exploring new techniques in deep learning for natural language processing.',
-      tags: ['Python', 'TensorFlow', 'NLP'],
-      link: '/research/ml-nlp',
-      image: '/project-placeholder.jpg',
-    },
-    {
-      type: 'blog',
-      title: 'Building Accessible UIs',
-      description: 'Best practices for creating inclusive and accessible user interfaces.',
-      tags: ['Accessibility', 'UI/UX', 'Web'],
-      link: '/blog/accessible-uis',
-      image: '/project-placeholder.jpg',
-    },
+export default function HomePage({ featuredContent }: HomePageProps) {
+  // Only show a maximum of 3 featured items, one from each category
+  const featuredItems = [
+    ...featuredContent.blogs.slice(0, 1).map(blog => ({
+      type: 'blog' as const,
+      item: blog,
+      link: `/blog/${blog.id}`
+    })),
+    ...featuredContent.projects.slice(0, 1).map(project => ({
+      type: 'project' as const,
+      item: project,
+      link: `/projects/${project.id}`
+    })),
+    ...featuredContent.research.slice(0, 1).map(research => ({
+      type: 'research' as const,
+      item: research,
+      link: `/research/${research.id}`
+    }))
   ];
 
   return (
@@ -206,32 +157,26 @@ export default function Home() {
         <SectionContent>
           <SectionTitle>Featured Work</SectionTitle>
           <FeaturedGrid>
-            {featuredItems.map((item, index) => (
-              <FeaturedCard key={index}>
-                <FeaturedImageContainer>
-                  <span>{item.type === 'blog' ? 'Blog Post Image' : item.type === 'research' ? 'Research Image' : 'Project Image'}</span>
-                  {/*<Image*/}
-                  {/*  src={item.image}*/}
-                  {/*  alt={item.title}*/}
-                  {/*  fill*/}
-                  {/*  sizes="(max-width: 768px) 100vw, 33vw"*/}
-                  {/*  style={{ objectFit: "cover", opacity: 0.7 }}*/}
-                  {/*/>*/}
-                </FeaturedImageContainer>
-                <FeaturedContent>
-                  <FeaturedType>{item.type}</FeaturedType>
-                  <FeaturedTitle>{item.title}</FeaturedTitle>
-                  <FeaturedDescription>{item.description}</FeaturedDescription>
-                  <TagContainer>
-                    {item.tags.map((tag, tagIndex) => (
-                      <Tag key={tagIndex}>{tag}</Tag>
-                    ))}
-                  </TagContainer>
-                  <Link href={item.link} passHref legacyBehavior>
-                    <CTAButton>View {item.type === 'blog' ? 'Post' : item.type}</CTAButton>
-                  </Link>
-                </FeaturedContent>
-              </FeaturedCard>
+            {featuredItems.map(({ type, item, link }) => (
+              <ContentCard
+                key={`${type}-${item.id}`}
+                title={item.title}
+                description={item.description}
+                imageSrc={item.thumbnailUrl}
+                date={item.formattedDate}
+                tags={item.tags}
+                type={type}
+                metaRight={type === 'blog' ? (item as BlogPost).readingTime : undefined}
+                buttons={
+                  <CTAButton href={link}>
+                    {type === 'blog' 
+                      ? 'Read Post' 
+                      : type === 'project' 
+                        ? 'View Project' 
+                        : 'View Research'}
+                  </CTAButton>
+                }
+              />
             ))}
           </FeaturedGrid>
         </SectionContent>
@@ -239,3 +184,13 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const featuredContent = getFeaturedContent();
+  
+  return {
+    props: {
+      featuredContent
+    }
+  };
+};

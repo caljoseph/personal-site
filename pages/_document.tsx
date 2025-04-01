@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="icon" type="image/webp" href="/favicon.webp" />
+          <link rel="icon" type="image/webp" href="/images/favicon.webp" />
           <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"

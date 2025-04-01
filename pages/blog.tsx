@@ -3,7 +3,12 @@ import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Link from 'next/link';
 import TypewriterHeading from "@/components/TypewriterHeading";
+import { GetStaticProps } from 'next';
+import { getAllContent, BlogPost } from '@/lib/content';
+import ContentCard from '@/components/ContentCard';
+import CTAButton from '@/components/CTAButton';
 import TagContainer from "@/components/TagContainer";
+import Tag from "@/components/Tag";
 
 const BlogContainer = styled.div`
   max-width: 1200px;
@@ -15,27 +20,6 @@ const BlogContainer = styled.div`
   }
 `;
 
-const PageTitle = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 60%;
-    height: 4px;
-    background-color: var(--accent);
-  }
-  
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
-`;
-
 const Subtitle = styled.p`
   font-size: 1.25rem;
   color: var(--text-secondary);
@@ -43,14 +27,9 @@ const Subtitle = styled.p`
   max-width: 800px;
 `;
 
-const BlogGrid = styled.div`
+const BlogList = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 const FeaturedPost = styled.div`
@@ -76,12 +55,8 @@ const FeaturedPost = styled.div`
 const FeaturedPostImage = styled.div`
   flex: 0 0 40%;
   background-color: var(--secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
+  position: relative;
+  min-height: 300px;
   
   @media (max-width: 768px) {
     height: 200px;
@@ -106,33 +81,6 @@ const FeaturedLabel = styled.span`
   letter-spacing: 0.5px;
 `;
 
-const PostCard = styled.div`
-  background-color: var(--primary);
-  border-radius: 0.5rem;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const PostImage = styled.div`
-  height: 200px;
-  background-color: var(--secondary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-secondary);
-  font-size: 1.2rem;
-`;
-
-const PostContent = styled.div`
-  padding: 1.5rem;
-`;
-
 const PostTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
@@ -152,15 +100,6 @@ const PostDescription = styled.p`
   margin-bottom: 1.5rem;
 `;
 
-const Tag = styled.span`
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--accent);
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-`;
-
 const ReadMoreLink = styled.a`
   display: inline-flex;
   align-items: center;
@@ -173,6 +112,51 @@ const ReadMoreLink = styled.a`
   
   &:hover {
     color: #60a5fa;
+  }
+`;
+
+const BlogItem = styled.div`
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+`;
+
+const BlogThumbnail = styled.div`
+  flex: 0 0 200px;
+  height: 150px;
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+    height: 200px;
+  }
+`;
+
+const BlogContent = styled.div`
+  flex: 1;
+  padding: 0.5rem 0;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 2rem;
+  margin: 3rem 0 2rem 0;
+  color: var(--text);
+  
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+    margin-top: 2rem;
   }
 `;
 
@@ -194,61 +178,13 @@ const SeeMoreButton = styled.button`
   }
 `;
 
-// Blog post data
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Optimizing Graph Algorithms: A Practical Approach',
-    date: 'March 15, 2023',
-    tags: ['Algorithms', 'Computer Science', 'Performance'],
-    description: 'An exploration of practical techniques for optimizing graph algorithms in real-world applications, with code examples and performance benchmarks.',
-    featured: true,
-  },
-  {
-    id: 2,
-    title: 'The Mathematics Behind Machine Learning Models',
-    date: 'February 22, 2023',
-    tags: ['Machine Learning', 'Mathematics', 'Data Science'],
-    description: 'A deep dive into the mathematical foundations of popular machine learning models, from linear regression to neural networks.',
-    featured: false,
-  },
-  {
-    id: 3,
-    title: 'Building Responsive UIs with React and Styled Components',
-    date: 'January 10, 2023',
-    tags: ['React', 'Web Development', 'UI/UX'],
-    description: 'A comprehensive guide to creating beautiful, responsive user interfaces using React and styled-components, with practical examples.',
-    featured: false,
-  },
-  {
-    id: 4,
-    title: 'Understanding Big O Notation and Algorithm Complexity',
-    date: 'December 5, 2022',
-    tags: ['Algorithms', 'Computer Science', 'Theory'],
-    description: 'A beginner-friendly explanation of Big O notation and how it helps us analyze and compare algorithm efficiency.',
-    featured: false,
-  },
-  {
-    id: 5,
-    title: 'Distributed Systems: Principles and Paradigms',
-    date: 'November 18, 2022',
-    tags: ['Distributed Systems', 'Architecture', 'Systems Design'],
-    description: 'An introduction to the core principles of distributed systems and various paradigms for designing scalable, fault-tolerant applications.',
-    featured: false,
-  },
-  {
-    id: 6,
-    title: 'Modern JavaScript Techniques for Cleaner Code',
-    date: 'October 3, 2022',
-    tags: ['JavaScript', 'Web Development', 'Clean Code'],
-    description: 'Explore modern JavaScript techniques and best practices that can help you write cleaner, more maintainable code.',
-    featured: false,
-  },
-];
+interface BlogPageProps {
+  posts: BlogPost[];
+}
 
-const BlogPage = () => {
-  const featuredPost = blogPosts.find(post => post.featured);
-  const regularPosts = blogPosts.filter(post => !post.featured);
+const BlogPage = ({ posts }: BlogPageProps) => {
+  const featuredPost = posts.find(post => post.featured);
+  const regularPosts = posts.filter(post => !post.featured);
   
   return (
     <Layout
@@ -265,62 +201,88 @@ const BlogPage = () => {
         {featuredPost && (
           <FeaturedPost>
             <FeaturedPostImage>
-              <span>Featured Post Image</span>
+              <Link href={`/blog/${featuredPost.id}`} passHref>
+                <img
+                  src={featuredPost.thumbnailUrl}
+                  alt={featuredPost.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </Link>
             </FeaturedPostImage>
             <FeaturedPostContent>
-              <FeaturedLabel>Featured</FeaturedLabel>
+              <FeaturedLabel>Featured Post</FeaturedLabel>
               <PostTitle>{featuredPost.title}</PostTitle>
               <PostMeta>
-                <span>{featuredPost.date}</span>
+                <span>{featuredPost.formattedDate}</span>
+                <span>{featuredPost.readingTime}</span>
               </PostMeta>
               <PostDescription>{featuredPost.description}</PostDescription>
-              <TagContainer>
+              <TagContainer style={{marginBottom: '1.5rem'}}>
                 {featuredPost.tags.map(tag => (
                   <Tag key={tag}>{tag}</Tag>
                 ))}
               </TagContainer>
               <Link href={`/blog/${featuredPost.id}`} passHref legacyBehavior>
-                <ReadMoreLink>
-                  Read Full Article <span>→</span>
-                </ReadMoreLink>
+                <CTAButton>Read Full Article</CTAButton>
               </Link>
             </FeaturedPostContent>
           </FeaturedPost>
         )}
         
-        <BlogGrid>
+        <SectionTitle>Posts</SectionTitle>
+        
+        <BlogList>
           {regularPosts.map(post => (
-            <PostCard key={post.id}>
-              <PostImage>
-                <span>Post Image</span>
-              </PostImage>
-              <PostContent>
+            <BlogItem key={post.id}>
+              <BlogThumbnail>
+                <Link href={`/blog/${post.id}`} passHref>
+                  <img
+                    src={post.thumbnailUrl}
+                    alt={post.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </Link>
+              </BlogThumbnail>
+              <BlogContent>
                 <PostTitle>{post.title}</PostTitle>
                 <PostMeta>
-                  <span>{post.date}</span>
+                  <span>{post.formattedDate}</span>
+                  <span>{post.readingTime}</span>
                 </PostMeta>
                 <PostDescription>{post.description}</PostDescription>
-                <TagContainer>
+                <TagContainer style={{marginBottom: '1rem'}}>
                   {post.tags.map(tag => (
                     <Tag key={tag}>{tag}</Tag>
                   ))}
                 </TagContainer>
                 <Link href={`/blog/${post.id}`} passHref legacyBehavior>
                   <ReadMoreLink>
-                    Read More <span>→</span>
+                    Read Article <span>→</span>
                   </ReadMoreLink>
                 </Link>
-              </PostContent>
-            </PostCard>
+              </BlogContent>
+            </BlogItem>
           ))}
-        </BlogGrid>
+        </BlogList>
         
-        <SeeMoreButton>
-          Load More Articles
-        </SeeMoreButton>
+        {posts.length > 6 && (
+          <SeeMoreButton>
+            Load More Articles
+          </SeeMoreButton>
+        )}
       </BlogContainer>
     </Layout>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = getAllContent<BlogPost>('blog');
+  
+  return {
+    props: {
+      posts
+    }
+  };
 };
 
 export default BlogPage;

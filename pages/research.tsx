@@ -1,9 +1,13 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
+import Link from 'next/link';
+import Image from 'next/image';
 import TypewriterHeading from "@/components/TypewriterHeading";
 import Tag from "@/components/Tag";
 import TagContainer from "@/components/TagContainer";
+import { GetStaticProps } from 'next';
+import { getAllContent, Research } from '@/lib/content';
 
 const ResearchContainer = styled.div`
   max-width: 1200px;
@@ -12,27 +16,6 @@ const ResearchContainer = styled.div`
   
   @media (max-width: 768px) {
     padding: 3rem 1rem;
-  }
-`;
-
-const PageTitle = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-  
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -10px;
-    width: 60%;
-    height: 4px;
-    background-color: var(--accent);
-  }
-  
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
   }
 `;
 
@@ -126,12 +109,36 @@ const PublicationsList = styled.div`
 `;
 
 const PublicationItem = styled.div`
+  display: flex;
+  gap: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid var(--border);
   
   &:last-child {
     border-bottom: none;
   }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+  }
+`;
+
+const PublicationThumbnail = styled.div`
+  flex: 0 0 200px;
+  height: 150px;
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    flex: 0 0 100%;
+    height: 200px;
+  }
+`;
+
+const PublicationContent = styled.div`
+  flex: 1;
 `;
 
 const PublicationTitle = styled.h3`
@@ -166,7 +173,16 @@ const PublicationAbstract = styled.div`
   }
 `;
 
-const ResearchPage = () => {
+interface ResearchPageProps {
+  researchItems: Research[];
+}
+
+const ResearchPage = ({ researchItems }: ResearchPageProps) => {
+  // Group research items by type
+  const ongoingResearch = researchItems.filter(item => item.type === 'ongoing');
+  const publications = researchItems.filter(item => item.type === 'publication');
+  const presentations = researchItems.filter(item => item.type === 'presentation');
+  
   return (
     <Layout
       title="Research | Caleb Bradshaw"
@@ -179,199 +195,133 @@ const ResearchPage = () => {
           My work focuses on algorithm optimization, computational complexity, and applied machine learning.
         </Subtitle>
         
-        <ResearchSection>
-          <SectionTitle>Current Research</SectionTitle>
-          
-          <ResearchCard>
-            <ResearchTitle>Optimizing Graph Algorithms for Large-Scale Network Analysis</ResearchTitle>
-            <ResearchMeta>
-              <span>Advisor: <span className="highlight">Dr. Robert Johnson</span></span>
-              <span>Period: <span className="highlight">2022 - Present</span></span>
-              <span>Status: <span className="highlight">Ongoing</span></span>
-            </ResearchMeta>
-            <ResearchDescription>
-              <p>
-                This research focuses on developing more efficient algorithms for analyzing large-scale network data, 
-                with applications in social network analysis, biological networks, and computer systems.
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                We&apos;re currently exploring novel approaches to community detection and influence propagation in graphs with
-                millions of nodes, aiming to reduce computational complexity while maintaining accuracy. Our preliminary 
-                results show a 40% improvement in processing time compared to state-of-the-art methods.
-              </p>
-            </ResearchDescription>
-            <TagContainer>
-              <Tag>Graph Theory</Tag>
-              <Tag>Algorithm Optimization</Tag>
-              <Tag>Network Analysis</Tag>
-              <Tag>Parallel Computing</Tag>
-            </TagContainer>
-            <ResearchLinks>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Project Repository <span>→</span>
-              </ResearchLink>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Interim Report <span>→</span>
-              </ResearchLink>
-            </ResearchLinks>
-          </ResearchCard>
-          
-          <ResearchCard>
-            <ResearchTitle>Machine Learning Approaches to Predicting Algorithm Complexity</ResearchTitle>
-            <ResearchMeta>
-              <span>Advisor: <span className="highlight">Dr. Sarah Williams</span></span>
-              <span>Period: <span className="highlight">2023 - Present</span></span>
-              <span>Status: <span className="highlight">Ongoing</span></span>
-            </ResearchMeta>
-            <ResearchDescription>
-              <p>
-                This project investigates the use of machine learning techniques to predict the computational complexity 
-                of algorithms based on their source code and input characteristics. The goal is to develop a system that 
-                can automatically analyze code and provide insights into its performance characteristics.
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                We&apos;re building a dataset of annotated algorithms and their empirical performance metrics, which will be
-                used to train and evaluate various machine learning models. This research has potential applications in 
-                code optimization, algorithm selection, and automated performance tuning.
-              </p>
-            </ResearchDescription>
-            <TagContainer>
-              <Tag>Machine Learning</Tag>
-              <Tag>Computational Complexity</Tag>
-              <Tag>Static Analysis</Tag>
-              <Tag>Performance Prediction</Tag>
-            </TagContainer>
-            <ResearchLinks>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Project Details <span>→</span>
-              </ResearchLink>
-            </ResearchLinks>
-          </ResearchCard>
-        </ResearchSection>
-        
-        <ResearchSection>
-          <SectionTitle>Publications</SectionTitle>
-          
-          <PublicationsList>
-            <PublicationItem>
-              <PublicationTitle>Efficient Community Detection in Large-Scale Social Networks</PublicationTitle>
-              <PublicationAuthors>
-                <span>Bradshaw, C.</span>, Johnson, R., Smith, A.
-              </PublicationAuthors>
-              <PublicationVenue>
-                IEEE International Conference on Network Analysis (ICNA), 2023 - Under Review
-              </PublicationVenue>
-              <PublicationAbstract>
-                <p>
-                  This paper presents a novel approach to community detection in large-scale social networks, combining 
-                  parallel computing techniques with optimized graph algorithms. We demonstrate that our method scales 
-                  linearly with the number of edges in the graph, making it suitable for analyzing networks with millions 
-                  of nodes and billions of edges.
-                </p>
-                <p>
-                  Experimental results on both synthetic and real-world datasets show that our approach achieves comparable 
-                  or better community detection quality than existing methods while significantly reducing computational time.
-                </p>
-              </PublicationAbstract>
-              <ResearchLinks>
-                <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                  Preprint <span>→</span>
-                </ResearchLink>
-              </ResearchLinks>
-            </PublicationItem>
+        {ongoingResearch.length > 0 && (
+          <ResearchSection>
+            <SectionTitle>Current Research</SectionTitle>
             
-            <PublicationItem>
-              <PublicationTitle>A Comparative Study of Algorithm Performance Prediction Methods</PublicationTitle>
-              <PublicationAuthors>
-                Williams, S., Chen, L., <span>Bradshaw, C.</span>
-              </PublicationAuthors>
-              <PublicationVenue>
-                Journal of Computational Performance, Vol. 15, Issue 2, 2023
-              </PublicationVenue>
-              <PublicationAbstract>
-                <p>
-                  This study compares various approaches to predicting algorithm performance based on code characteristics 
-                  and input parameters. We evaluate traditional analytical methods alongside machine learning-based 
-                  techniques, including regression models, neural networks, and ensemble methods.
-                </p>
-                <p>
-                  Our results indicate that ensemble methods combining static code analysis with runtime feature extraction 
-                  achieve the highest prediction accuracy across a diverse set of algorithms and input distributions.
-                </p>
-              </PublicationAbstract>
-              <ResearchLinks>
-                <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                  Full Paper <span>→</span>
-                </ResearchLink>
-                <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                  Dataset <span>→</span>
-                </ResearchLink>
-              </ResearchLinks>
-            </PublicationItem>
-          </PublicationsList>
-        </ResearchSection>
+            {ongoingResearch.map(research => (
+              <ResearchCard key={research.id}>
+                <ResearchTitle>{research.title}</ResearchTitle>
+                <ResearchMeta>
+                  {research.advisor && (
+                    <span>Advisor: <span className="highlight">{research.advisor}</span></span>
+                  )}
+                  <span>Period: <span className="highlight">{research.formattedDate}</span></span>
+                  {research.status && (
+                    <span>Status: <span className="highlight">{research.status}</span></span>
+                  )}
+                </ResearchMeta>
+                <ResearchDescription>
+                  <p>{research.description}</p>
+                </ResearchDescription>
+                <TagContainer>
+                  {research.tags.map(tag => (
+                    <Tag key={tag}>{tag}</Tag>
+                  ))}
+                </TagContainer>
+                <ResearchLinks>
+                  <Link href={`/research/${research.id}`} passHref legacyBehavior>
+                    <ResearchLink>
+                      Read More <span>→</span>
+                    </ResearchLink>
+                  </Link>
+                </ResearchLinks>
+              </ResearchCard>
+            ))}
+          </ResearchSection>
+        )}
         
-        <ResearchSection>
-          <SectionTitle>Academic Presentations</SectionTitle>
-          
-          <ResearchCard>
-            <ResearchTitle>Scalable Algorithms for Network Analysis in the Era of Big Data</ResearchTitle>
-            <ResearchMeta>
-              <span>Event: <span className="highlight">BYU Computer Science Symposium</span></span>
-              <span>Date: <span className="highlight">November 2023</span></span>
-              <span>Type: <span className="highlight">Poster Presentation</span></span>
-            </ResearchMeta>
-            <ResearchDescription>
-              <p>
-                Presented ongoing research on scalable algorithms for analyzing large-scale networks, focusing on 
-                techniques that enable efficient processing of graphs with millions of nodes and billions of edges.
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                The presentation highlighted our novel parallel processing approach and demonstrated its application 
-                to real-world social network datasets, showing significant performance improvements over traditional methods.
-              </p>
-            </ResearchDescription>
-            <ResearchLinks>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Presentation Slides <span>→</span>
-              </ResearchLink>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Poster <span>→</span>
-              </ResearchLink>
-            </ResearchLinks>
-          </ResearchCard>
-          
-          <ResearchCard>
-            <ResearchTitle>Machine Learning for Code Performance Prediction</ResearchTitle>
-            <ResearchMeta>
-              <span>Event: <span className="highlight">Utah Conference on Artificial Intelligence</span></span>
-              <span>Date: <span className="highlight">March 2023</span></span>
-              <span>Type: <span className="highlight">Oral Presentation</span></span>
-            </ResearchMeta>
-            <ResearchDescription>
-              <p>
-                Delivered a talk on our research using machine learning to predict algorithm performance based on 
-                code characteristics and input features. The presentation covered our methodology, dataset creation, 
-                model selection, and preliminary results.
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                The talk also discussed potential applications in automatic code optimization and algorithm selection, 
-                generating significant interest and valuable feedback from the research community.
-              </p>
-            </ResearchDescription>
-            <ResearchLinks>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Presentation Recording <span>→</span>
-              </ResearchLink>
-              <ResearchLink href="#" target="_blank" rel="noopener noreferrer">
-                Slides <span>→</span>
-              </ResearchLink>
-            </ResearchLinks>
-          </ResearchCard>
-        </ResearchSection>
+        {publications.length > 0 && (
+          <ResearchSection>
+            <SectionTitle>Publications</SectionTitle>
+            
+            <PublicationsList>
+              {publications.map(publication => (
+                <PublicationItem key={publication.id}>
+                  <PublicationThumbnail>
+                    <Image
+                      src={publication.thumbnailUrl}
+                      alt={publication.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 200px"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </PublicationThumbnail>
+                  <PublicationContent>
+                    <PublicationTitle>{publication.title}</PublicationTitle>
+                    {publication.authors && (
+                      <PublicationAuthors>
+                        {publication.authors.map((author, index) => (
+                          <React.Fragment key={author}>
+                            {author.includes('Bradshaw') ? <span>{author}</span> : author}
+                            {index < publication.authors.length - 1 ? ', ' : ''}
+                          </React.Fragment>
+                        ))}
+                      </PublicationAuthors>
+                    )}
+                    {publication.venue && (
+                      <PublicationVenue>
+                        {publication.venue}
+                      </PublicationVenue>
+                    )}
+                    <PublicationAbstract>
+                      <p>{publication.description}</p>
+                    </PublicationAbstract>
+                    <ResearchLinks>
+                      <Link href={`/research/${publication.id}`} passHref legacyBehavior>
+                        <ResearchLink>
+                          Details <span>→</span>
+                        </ResearchLink>
+                      </Link>
+                    </ResearchLinks>
+                  </PublicationContent>
+                </PublicationItem>
+              ))}
+            </PublicationsList>
+          </ResearchSection>
+        )}
+        
+        {presentations.length > 0 && (
+          <ResearchSection>
+            <SectionTitle>Academic Presentations</SectionTitle>
+            
+            {presentations.map(presentation => (
+              <ResearchCard key={presentation.id}>
+                <ResearchTitle>{presentation.title}</ResearchTitle>
+                <ResearchMeta>
+                  {presentation.venue && (
+                    <span>Event: <span className="highlight">{presentation.venue}</span></span>
+                  )}
+                  <span>Date: <span className="highlight">{presentation.formattedDate}</span></span>
+                  <span>Type: <span className="highlight">Presentation</span></span>
+                </ResearchMeta>
+                <ResearchDescription>
+                  <p>{presentation.description}</p>
+                </ResearchDescription>
+                <ResearchLinks>
+                  <Link href={`/research/${presentation.id}`} passHref legacyBehavior>
+                    <ResearchLink>
+                      View Presentation <span>→</span>
+                    </ResearchLink>
+                  </Link>
+                </ResearchLinks>
+              </ResearchCard>
+            ))}
+          </ResearchSection>
+        )}
       </ResearchContainer>
     </Layout>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const researchItems = getAllContent<Research>('research');
+  
+  return {
+    props: {
+      researchItems
+    }
+  };
 };
 
 export default ResearchPage;
