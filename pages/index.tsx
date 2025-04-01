@@ -59,7 +59,7 @@ const HeroButtons = styled.div`
 `;
 
 const SectionWrapper = styled.div`
-  padding: 0rem 2rem;
+  padding-bottom: 5rem;
 `;
 
 const SectionContent = styled.div`
