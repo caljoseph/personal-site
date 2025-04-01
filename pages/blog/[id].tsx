@@ -158,7 +158,7 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
     return (
       <Layout title="Post Not Found | Caleb Bradshaw">
         <BlogPostContainer>
-          <p>Sorry, the post you're looking for couldn't be found.</p>
+          <p>Sorry, the post you&apos;re looking for couldn&apos;t be found.</p>
         </BlogPostContainer>
       </Layout>
     );

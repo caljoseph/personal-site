@@ -201,7 +201,7 @@ export default function ProjectPage({ project }: ProjectPageProps) {
     return (
       <Layout title="Project Not Found | Caleb Bradshaw">
         <ProjectContainer>
-          <p>Sorry, the project you're looking for couldn't be found.</p>
+          <p>Sorry, the project you&apos;re looking for couldn&apos;t be found.</p>
         </ProjectContainer>
       </Layout>
     );

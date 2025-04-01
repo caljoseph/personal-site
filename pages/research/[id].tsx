@@ -221,7 +221,7 @@ export default function ResearchPage({ research }: ResearchPageProps) {
     return (
       <Layout title="Research Not Found | Caleb Bradshaw">
         <ResearchContainer>
-          <p>Sorry, the research you're looking for couldn't be found.</p>
+          <p>Sorry, the research you&apos;re looking for couldn&apos;t be found.</p>
         </ResearchContainer>
       </Layout>
     );
