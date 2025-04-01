@@ -24,18 +24,19 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-        <Html lang="en">
-          <Head>
-            <link
-                rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-            />
-          </Head>
-          <body>
+      <Html lang="en">
+        <Head>
+          <link rel="icon" type="image/webp" href="/favicon.webp" />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          />
+        </Head>
+        <body>
           <Main />
           <NextScript />
-          </body>
-        </Html>
+        </body>
+      </Html>
     );
   }
 }

@@ -12,8 +12,9 @@ const OutlineButton = styled.a`
   text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-  
-  &:hover {
+
+
+    &:hover {
     background-color: var(--accent);
     color: white;
   }

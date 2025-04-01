@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const ToggleButton = styled.button`
-  background-color: var(--secondary);
+  background-color: var(--background);
   border: 2px solid var(--accent);
   cursor: pointer;
   width: 42px;

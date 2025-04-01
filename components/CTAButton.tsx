@@ -13,7 +13,8 @@ const CTAButton = styled.a`
   text-transform: uppercase;
   letter-spacing: 0.05em;
 
-  &:hover {
+
+    &:hover {
     background-color: var(--accent);
     color: var(--background);
   }
