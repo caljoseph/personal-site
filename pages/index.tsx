@@ -137,7 +137,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
       >
         <HeroSection>
           <HeroContent>
-            <TypewriterHeading text="Hello there! I'm Caleb." delay={300} />
+            <TypewriterHeading text="Hello there! I'm Caleb." delay={600} />
             <HeroSubtitle>
               Computer Science student at BYU with a passion for web development,
               machine learning, and problem solving
