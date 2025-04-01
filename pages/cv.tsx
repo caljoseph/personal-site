@@ -284,7 +284,7 @@ const CVPage = () => {
               <p>Valedictorian</p>
               <p>GPA: 4.0/4.0</p>
               <p>Advanced Placement Courses: Computer Science, Calculus BC, Physics, Statistics</p>
-              <p>Founded and led the school's Robotics Club and participated in regional competitions</p>
+              <p>Founded and led the school&apos;s Robotics Club and participated in regional competitions</p>
             </EntryDescription>
           </CVEntry>
         </CVSection>
@@ -428,11 +428,11 @@ const CVPage = () => {
           
           <CVEntry>
             <EntryHeader>
-              <EntryTitle>Dean's List</EntryTitle>
+              <EntryTitle>Dean&apos;s List</EntryTitle>
               <EntryDate>2021 - Present</EntryDate>
             </EntryHeader>
             <EntryDescription>
-              <p>Consistently maintained a GPA above 3.8, earning a place on the Dean's List for academic excellence.</p>
+              <p>Consistently maintained a GPA above 3.8, earning a place on the Dean&apos;s List for academic excellence.</p>
             </EntryDescription>
           </CVEntry>
           

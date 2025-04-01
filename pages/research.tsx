@@ -195,7 +195,7 @@ const ResearchPage = () => {
                 with applications in social network analysis, biological networks, and computer systems.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                We're currently exploring novel approaches to community detection and influence propagation in graphs with 
+                We&apos;re currently exploring novel approaches to community detection and influence propagation in graphs with
                 millions of nodes, aiming to reduce computational complexity while maintaining accuracy. Our preliminary 
                 results show a 40% improvement in processing time compared to state-of-the-art methods.
               </p>
@@ -230,7 +230,7 @@ const ResearchPage = () => {
                 can automatically analyze code and provide insights into its performance characteristics.
               </p>
               <p style={{ marginTop: '1rem' }}>
-                We're building a dataset of annotated algorithms and their empirical performance metrics, which will be 
+                We&apos;re building a dataset of annotated algorithms and their empirical performance metrics, which will be
                 used to train and evaluate various machine learning models. This research has potential applications in 
                 code optimization, algorithm selection, and automated performance tuning.
               </p>

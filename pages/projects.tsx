@@ -232,7 +232,7 @@ const ProjectsPage = () => {
       <ProjectsContainer>
         <TypewriterHeading text="My Projects " />
         <Subtitle>
-          A collection of academic, personal, and professional projects I've
+          A collection of academic, personal, and professional projects I&apos;ve
           worked on. These projects showcase my skills and interests in various
           areas of computer science and software development.
         </Subtitle>
