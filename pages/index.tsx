@@ -186,7 +186,7 @@ export default function Home() {
     >
       <HeroSection>
         <HeroContent>
-          <TypewriterHeading text="Hello there, I'm Caleb " delay={600} />
+          <TypewriterHeading text="Hello there, I'm Caleb " delay={300} />
           <HeroSubtitle>
             Computer Science student at BYU with a passion for web development, 
             machine learning, and problem solving
