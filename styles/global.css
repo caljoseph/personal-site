@@ -4,8 +4,6 @@
   /* Fonts */
   --font-body: 'Nunito Sans', sans-serif;
   --font-heading: 'Inclusive Sans', sans-serif;
-  --tag-background: #dae6f8;
-  --tag-border: #ccccca;
 
 
   /* Dark theme colors */
@@ -20,6 +18,8 @@
   --success: #678d58;
   --error: #c15b4a;
   --warning: #d1a15f;
+  --tag-background: #5f5b57;
+  --tag-border: #65625b;
 }
 
 [data-theme='light'] {
@@ -31,6 +31,8 @@
   --background: #efe9e2;
   --muted: #b4afa5;
   --border: #c6c0b6;
+  --tag-background: #dae6f8;
+  --tag-border: #ccccca;
 }
 
 /* Base reset */
