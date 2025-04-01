@@ -32,27 +32,34 @@ const Cursor = styled.span`
 
 interface TypewriterHeadingProps {
     text: string;
+    delay?: number; // delay in ms before typing starts
 }
 
-const TypewriterHeading: React.FC<TypewriterHeadingProps> = ({ text }) => {
+const TypewriterHeading: React.FC<TypewriterHeadingProps> = ({ text, delay = 0 }) => {
     const [typed, setTyped] = useState('');
 
     useEffect(() => {
         let i = 0;
-        let timeout: NodeJS.Timeout;
+        let typingTimeout: NodeJS.Timeout;
+        let startTimeout: NodeJS.Timeout;
 
         const type = () => {
             setTyped(text.slice(0, i + 1));
             i++;
             if (i < text.length) {
-                timeout = setTimeout(type, 80);
+                typingTimeout = setTimeout(type, 80);
             }
         };
 
-        type();
+        startTimeout = setTimeout(() => {
+            type();
+        }, delay);
 
-        return () => clearTimeout(timeout);
-    }, [text]);
+        return () => {
+            clearTimeout(startTimeout);
+            clearTimeout(typingTimeout);
+        };
+    }, [text, delay]);
 
     return (
         <StyledHeading>
@@ -61,5 +68,6 @@ const TypewriterHeading: React.FC<TypewriterHeadingProps> = ({ text }) => {
         </StyledHeading>
     );
 };
+
 
 export default TypewriterHeading;
