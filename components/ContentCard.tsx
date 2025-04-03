@@ -14,6 +14,7 @@ const Card = styled.div<{ $isFeature?: boolean }>`
   height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   ${({ $isFeature }) => !$isFeature && `
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -38,6 +39,10 @@ const ImageContainer = styled.div<{ $isFeature?: boolean }>`
 
   ${({ $isFeature }) => !$isFeature && `
     height: 200px;
+    
+    @media (max-width: 767px) {
+      height: 180px;
+    }
   `}
 
   ${({ $isFeature }) => $isFeature && `
@@ -64,6 +69,10 @@ const ContentContainer = styled.div<{ $isFeature?: boolean }>`
       flex: 1;
     }
   `}
+  
+  @media (max-width: 768px) {
+    padding: 1.25rem;
+  }
 `;
 
 const TypeLabel = styled.span`
@@ -85,6 +94,10 @@ const Title = styled.h3<{ $isFeature?: boolean }>`
   font-size: ${props => props.$isFeature ? '1.75rem' : '1.5rem'};
   margin-bottom: 0.75rem;
   color: var(--text);
+  
+  @media (max-width: 768px) {
+    font-size: ${props => props.$isFeature ? '1.5rem' : '1.3rem'};
+  }
 `;
 
 const MetaInfo = styled.div`
@@ -98,6 +111,11 @@ const MetaInfo = styled.div`
 const Description = styled.p`
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
 `;
 
 const LinksContainer = styled.div`

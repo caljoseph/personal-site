@@ -6,6 +6,11 @@ const TagContainer = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+  
+  @media (max-width: 480px) {
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
 `;
 
 export default TagContainer;

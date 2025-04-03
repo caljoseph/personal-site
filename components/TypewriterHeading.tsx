@@ -4,8 +4,10 @@ import styled from 'styled-components';
 const StyledHeading = styled.h1`
     font-size: 3.5rem;
     margin-bottom: 1.5rem;
+    max-width: 100%;
+    overflow-x: hidden;
     @media (max-width: 768px) {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 `;
 

@@ -21,10 +21,17 @@ const HeroSection = styled.section`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+    min-height: calc(100vh - 160px);
+  }
 `;
 
 const HeroContent = styled.div`
   max-width: 800px;
+  width: 100%;
+  overflow-x: hidden;
 `;
 
 const HeroTitle = styled.h1`
@@ -41,9 +48,11 @@ const HeroSubtitle = styled.h2`
   font-weight: 400;
   color: var(--text-secondary);
   margin-bottom: 2.5rem;
+  max-width: 100%;
 
   @media (max-width: 768px) {
     font-size: 1.25rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -55,11 +64,15 @@ const HeroButtons = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem auto 0;
   }
 `;
 
 const SectionWrapper = styled.div`
-  padding-bottom: 5rem;
+  padding: 4rem 2rem 5rem;
 
   @media (max-width: 768px) {
     padding: 3rem 1rem;
@@ -89,6 +102,15 @@ const SectionTitle = styled.h2`
 
   @media (max-width: 768px) {
     font-size: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+    
+    &:after {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+    }
   }
 `;
 
@@ -99,6 +121,12 @@ const FeaturedGrid = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: minmax(0, 1fr);
   }
 `;
 

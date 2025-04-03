@@ -6,6 +6,10 @@ const FooterContainer = styled.footer`
   background-color: var(--primary);
   padding: 2rem 2rem;
   margin-top: auto;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const FooterContent = styled.div`
