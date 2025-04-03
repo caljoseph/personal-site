@@ -129,41 +129,41 @@ const Footer: React.FC = () => {
           </SocialIcons>
         </FooterSection>
         
-        <FooterSection>
-          <FooterTitle>Navigation</FooterTitle>
-          <FooterList>
-            <FooterListItem>
-              <Link href="/" passHref legacyBehavior>
-                <FooterLink>Home</FooterLink>
-              </Link>
-            </FooterListItem>
-            <FooterListItem>
-              <Link href="/about" passHref legacyBehavior>
-                <FooterLink>About</FooterLink>
-              </Link>
-            </FooterListItem>
-            <FooterListItem>
-              <Link href="/projects" passHref legacyBehavior>
-                <FooterLink>Projects</FooterLink>
-              </Link>
-            </FooterListItem>
-            <FooterListItem>
-              <Link href="/research" passHref legacyBehavior>
-                <FooterLink>Research</FooterLink>
-              </Link>
-            </FooterListItem>
-            <FooterListItem>
-              <Link href="/blog" passHref legacyBehavior>
-                <FooterLink>Blog</FooterLink>
-              </Link>
-            </FooterListItem>
-            <FooterListItem>
-              <Link href="/cv" passHref legacyBehavior>
-                <FooterLink>CV</FooterLink>
-              </Link>
-            </FooterListItem>
-          </FooterList>
-        </FooterSection>
+        {/*<FooterSection>*/}
+        {/*  <FooterTitle>Navigation</FooterTitle>*/}
+        {/*  <FooterList>*/}
+        {/*    <FooterListItem>*/}
+        {/*      <Link href="/" passHref legacyBehavior>*/}
+        {/*        <FooterLink>Home</FooterLink>*/}
+        {/*      </Link>*/}
+        {/*    </FooterListItem>*/}
+        {/*    <FooterListItem>*/}
+        {/*      <Link href="/about" passHref legacyBehavior>*/}
+        {/*        <FooterLink>About</FooterLink>*/}
+        {/*      </Link>*/}
+        {/*    </FooterListItem>*/}
+        {/*    <FooterListItem>*/}
+        {/*      <Link href="/projects" passHref legacyBehavior>*/}
+        {/*        <FooterLink>Projects</FooterLink>*/}
+        {/*      </Link>*/}
+        {/*    </FooterListItem>*/}
+        {/*    <FooterListItem>*/}
+        {/*      <Link href="/research" passHref legacyBehavior>*/}
+        {/*        <FooterLink>Research</FooterLink>*/}
+        {/*      </Link>*/}
+        {/*    </FooterListItem>*/}
+        {/*    <FooterListItem>*/}
+        {/*      <Link href="/blog" passHref legacyBehavior>*/}
+        {/*        <FooterLink>Blog</FooterLink>*/}
+        {/*      </Link>*/}
+        {/*    </FooterListItem>*/}
+        {/*    <FooterListItem>*/}
+        {/*      <Link href="/cv" passHref legacyBehavior>*/}
+        {/*        <FooterLink>CV</FooterLink>*/}
+        {/*      </Link>*/}
+        {/*    </FooterListItem>*/}
+        {/*  </FooterList>*/}
+        {/*</FooterSection>*/}
         
         <FooterSection>
           <FooterTitle>Contact</FooterTitle>

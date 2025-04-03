@@ -12,10 +12,10 @@ import { getAllContent, getFeaturedContent, Research } from '@/lib/content';
 const ResearchContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 2rem;
+  padding: 1rem 2rem;
   
   @media (max-width: 768px) {
-    padding: 3rem 1rem;
+    padding: 0rem 1rem;
   }
 `;
 
@@ -32,11 +32,12 @@ const ResearchSection = styled.section`
 
 const SectionTitle = styled.h2`
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin: 3rem 0 2rem 0;
   color: var(--text);
   
   @media (max-width: 768px) {
     font-size: 1.75rem;
+    margin-top: 2rem;
   }
 `;
 
@@ -56,15 +57,17 @@ const ResearchCard = styled.div`
 
 const ResearchTitle = styled.h3`
   font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   color: var(--text);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 `;
 
 const ResearchMeta = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
   
@@ -79,8 +82,7 @@ const ResearchMeta = styled.div`
   }
   
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 `;
@@ -88,6 +90,11 @@ const ResearchMeta = styled.div`
 const ResearchDescription = styled.div`
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  
+  p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 `;
 
 const ResearchLinks = styled.div`
@@ -111,7 +118,10 @@ const ResearchLink = styled.a`
 
 const PublicationsList = styled.div`
   display: grid;
-  gap: 2rem;
+  
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
 const PublicationItem = styled.div`
@@ -119,36 +129,51 @@ const PublicationItem = styled.div`
   gap: 2rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   
   &:last-child {
     border-bottom: none;
   }
   
+  > a {
+    flex: 0 0 200px;
+    display: block;
+    height: 150px;
+  }
+  
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
-    padding-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
     margin-bottom: 2rem;
+    
+    > a {
+      grid-row: 1;
+      height: 200px;
+      width: 100%;
+    }
   }
 `;
 
 const PublicationThumbnail = styled.div`
-  flex: 0 0 200px;
   height: 150px;
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
+  width: 100%;
   
   @media (max-width: 768px) {
-    flex: 0 0 100%;
     height: 200px;
-    margin-bottom: 1rem;
   }
 `;
 
 const PublicationContent = styled.div`
   flex: 1;
+  
+  @media (max-width: 768px) {
+    grid-row: 2;
+  }
 `;
 
 const PublicationTitle = styled.h3`
@@ -189,6 +214,7 @@ const PublicationAbstract = styled.div`
 `;
 
 const FeaturedResearchItem = styled.div`
+  grid-column: 1 / -1;
   background-color: var(--primary);
   border-radius: 0.5rem;
   overflow: hidden;
@@ -351,7 +377,7 @@ const ResearchPage = ({ researchItems, featuredResearch }: ResearchPageProps) =>
             <PublicationsList>
               {publications.map(publication => (
                 <PublicationItem key={publication.id}>
-                  <Link href={`/research/${publication.id}`} passHref style={{ textDecoration: 'none' }}>
+                  <Link href={`/research/${publication.id}`} passHref style={{ textDecoration: 'none', display: 'block' }}>
                     <PublicationThumbnail>
                       <Image
                         src={publication.thumbnailUrl}

@@ -12,10 +12,10 @@ import Image from 'next/image';
 const BlogContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 2rem;
+  padding: 1rem 2rem;
   
   @media (max-width: 768px) {
-    padding: 3rem 1rem;
+    padding: 0rem 1rem;
   }
 `;
 
@@ -28,7 +28,9 @@ const Subtitle = styled.p`
 
 const BlogList = styled.div`
   display: grid;
-  gap: 2rem;
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
 `;
 
 const FeaturedPost = styled.div`
@@ -133,37 +135,52 @@ const BlogItem = styled.div`
   gap: 2rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
   
   &:last-child {
     border-bottom: none;
   }
   
+  > a {
+    flex: 0 0 200px;
+    display: block;
+    height: 150px;
+  }
+  
   @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
-    padding-bottom: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
     margin-bottom: 2rem;
+    
+    > a {
+      grid-row: 1;
+      height: 200px;
+      width: 100%;
+    }
   }
 `;
 
 const BlogThumbnail = styled.div`
-  flex: 0 0 200px;
   height: 150px;
   position: relative;
   border-radius: 0.5rem;
   overflow: hidden;
+  width: 100%;
   
   @media (max-width: 768px) {
-    flex: 0 0 100%;
     height: 200px;
-    margin-bottom: 1rem;
   }
 `;
 
 const BlogContent = styled.div`
   flex: 1;
   padding: 0.5rem 0;
+  
+  @media (max-width: 768px) {
+    grid-row: 2;
+  }
 `;
 
 const SectionTitle = styled.h2`
@@ -209,13 +226,12 @@ const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
   return (
     <Layout
       title="Blog | Caleb Bradshaw"
-      description="Thoughts, tutorials, and insights on computer science, mathematics, and software development"
+      description="Thoughts on computer science, mathematics, and software development"
     >
       <BlogContainer>
         <TypewriterHeading text="Blog " />
         <Subtitle>
-          Thoughts, tutorials, and insights on computer science, mathematics, and software development. 
-          I write about topics that interest me and share knowledge that might help others in the field.
+          Thoughts on computer science, mathematics, and software development
         </Subtitle>
         
         {featuredPost && (
@@ -256,7 +272,7 @@ const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
         <BlogList>
           {regularPosts.map(post => (
             <BlogItem key={post.id}>
-              <Link href={`/blog/${post.id}`} passHref style={{ textDecoration: 'none' }}>
+              <Link href={`/blog/${post.id}`} passHref style={{ textDecoration: 'none', display: 'block' }}>
                 <BlogThumbnail>
                   <Image
                     src={post.thumbnailUrl}

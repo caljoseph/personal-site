@@ -4,7 +4,6 @@ date: "2023-02-10"
 description: "Learn advanced TypeScript techniques and patterns for building scalable applications."
 tags: ["TypeScript", "JavaScript", "Programming", "Type Safety"]
 author: "Caleb Bradshaw"
-thumbnailUrl: "/images/project-placeholder.jpg"
 ---
 
 # Mastering TypeScript: Best Practices for Large Codebases

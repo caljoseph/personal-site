@@ -62,8 +62,10 @@ const Letter = styled.span`
   display: inline-block;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  &:hover {
-    transform: translateY(-6px);
+  @media (min-width: 769px) {
+    &:hover {
+      transform: translateY(-6px);
+    }
   }
 `;
 

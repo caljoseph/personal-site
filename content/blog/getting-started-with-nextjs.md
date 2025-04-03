@@ -4,7 +4,6 @@ date: "2023-03-15"
 description: "Learn how to build modern React applications with Next.js, from setup to deployment."
 tags: ["React", "Next.js", "Web Development", "JavaScript"]
 author: "Caleb Bradshaw"
-thumbnailUrl: "/images/project-placeholder.jpg"
 ---
 
 # Getting Started with Next.js: A Comprehensive Guide

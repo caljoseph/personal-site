@@ -80,7 +80,7 @@ function parseContentFile(type: ContentType, fileName: string): any {
       : format(new Date(), 'MMMM d, yyyy'),
     description: data.description || '',
     tags: data.tags || [],
-    thumbnailUrl: data.thumbnailUrl || `/images/${type}-placeholder.jpg`,
+    thumbnailUrl: data.thumbnailUrl || "/images/placeholder.png",
     content,
     ...data // Include all other fields from the frontmatter
   };

@@ -1,5 +1,5 @@
 ---
-title: "Designing a Physics Prediction Task for Evaluating LLM Reasoning"
+title: "A Physics Prediction Task to Evaluate LLM Reasoning"
 date: "2025-04-02"
 description: "A research project introducing a novel physics prediction benchmark for large language models"
 tags: ["LLMs", "Evaluation", "Physics", "Calibration", "Machine Learning"]
@@ -8,7 +8,6 @@ advisor: "Dr. Sean Warnick"
 venue: ""
 status: "Ongoing"
 type: "Experiment"
-thumbnailUrl: "/images/project-placeholder.jpg"
 ---
 
 # Designing a Physics Prediction Task for Evaluating LLM Reasoning
