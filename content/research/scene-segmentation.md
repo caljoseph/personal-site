@@ -9,7 +9,6 @@ venue: "TACL (under review)"
 status: "under review"
 type: "publication"
 thumbnailUrl: "/images/scene-segmentation.png"
-featured: true
 ---
 
 # Taking the Derivative of a Story: A Novel Approach to Fiction Scene Segmentation

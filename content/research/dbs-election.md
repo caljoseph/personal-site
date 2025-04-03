@@ -9,7 +9,6 @@ venue: "arXiv"
 status: "Preprint"
 type: "publication"
 thumbnailUrl: "/images/llama-election.png"
-featured: true
 arxivUrl: "https://arxiv.org/abs/2411.03486"
 ---
 

@@ -28,7 +28,6 @@ description: "A brief description of your post (shown in previews)"
 tags: ["Tag1", "Tag2", "Tag3"]
 author: "Your Name"
 thumbnailUrl: "/images/your-thumbnail-image.jpg"
-featured: false
 ---
 
 # Your Blog Post Content Goes Here
@@ -53,7 +52,6 @@ category: "web" # Options: web, mobile, ai, systems, etc.
 thumbnailUrl: "/images/project-thumbnail.jpg"
 liveUrl: "https://yourlivesite.com" # Optional
 repoUrl: "https://github.com/your/repo" # Optional
-featured: false
 ---
 
 # Project Title
@@ -81,7 +79,6 @@ venue: "Publication Venue or Conference" # Optional
 status: "Published" # Options: Published, Under Review, Ongoing, etc.
 type: "publication" # Options: publication, presentation, ongoing
 thumbnailUrl: "/images/research-thumbnail.jpg"
-featured: false
 ---
 
 # Research Title
@@ -106,7 +103,6 @@ You may add a section with your personal thoughts, insights, or experiences rela
 | `description` | Brief description (shown in previews) | Yes |
 | `tags` | Array of tags/keywords | Yes |
 | `thumbnailUrl` | Path to thumbnail image | Yes |
-| `featured` | Whether to feature on homepage (boolean) | Yes |
 
 ### Blog-Specific Fields
 
@@ -178,7 +174,27 @@ function example() {
 
 ## Featured Content
 
-To feature content on the homepage, set `featured: true` in the frontmatter. The homepage will display up to 2 featured items from each content type (blog, projects, research).
+The site uses a simple configuration system for featured content.
+
+### How It Works
+
+In `lib/featuredConfig.ts`, you specify content IDs in the order they should appear:
+
+```javascript
+const featured = {
+  home: ['dbs-election', 'llm-physics', 'style-canvas'],
+  blog: ['getting-started-with-nextjs'],
+  research: ['llm-physics']
+};
+```
+
+- **Homepage:** Features a mix of content types (up to 3 items)
+- **Blog page:** Features one blog post
+- **Research page:** Features one research item
+
+Content IDs are filenames without the `.md` extension.
+
+The `featured: true` flag in markdown frontmatter is no longer used.
 
 ## Content Organization Best Practices
 

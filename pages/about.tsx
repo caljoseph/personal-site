@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Image from 'next/image';
 import TypewriterHeading from "@/components/TypewriterHeading";
+import ProfileSlideshow from '@/components/ProfileSlideshow';
 
 const AboutContainer = styled.div`
   max-width: 1200px;
@@ -235,6 +236,14 @@ const ContactInfo = styled.div`
 `;
 
 const AboutPage = () => {
+  // Array of all profile images from the about directory
+  const profileImages = [
+    '/images/about/profile-pic.jpg',
+    '/images/about/congress-pic.png',
+    '/images/about/timp-pic.png',
+    '/images/about/climbing-pic.png',
+  ];
+
   return (
     <Layout
       title="About | Caleb Bradshaw"
@@ -244,16 +253,10 @@ const AboutPage = () => {
         <TypewriterHeading text="About Me " />
 
         <ProfileSection>
-          <ProfileImage>
-            <Image
-              src="/images/profile-pic.jpg"
-              alt="Caleb Bradshaw"
-              fill
-              sizes="300px"
-              style={{ objectFit: 'cover', opacity: 1 }}
-              priority
-            />
-          </ProfileImage>
+          <ProfileSlideshow 
+            images={profileImages}
+            alt="Caleb Bradshaw"
+          />
 
           <ProfileContent>
             <p>

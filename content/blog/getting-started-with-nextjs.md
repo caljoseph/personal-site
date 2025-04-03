@@ -5,7 +5,6 @@ description: "Learn how to build modern React applications with Next.js, from se
 tags: ["React", "Next.js", "Web Development", "JavaScript"]
 author: "Caleb Bradshaw"
 thumbnailUrl: "/images/project-placeholder.jpg"
-featured: false
 ---
 
 # Getting Started with Next.js: A Comprehensive Guide

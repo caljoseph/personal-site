@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import TypewriterHeading from "@/components/TypewriterHeading";
 import { GetStaticProps } from 'next';
-import { getAllContent, BlogPost } from '@/lib/content';
-
+import { getAllContent, getFeaturedContent, BlogPost } from '@/lib/content';
 import TagContainer from "@/components/TagContainer";
 import Tag from "@/components/Tag";
+import Image from 'next/image';
 
 const BlogContainer = styled.div`
   max-width: 1200px;
@@ -179,11 +179,14 @@ const SeeMoreButton = styled.button`
 
 interface BlogPageProps {
   posts: BlogPost[];
+  featuredPost: BlogPost | null;
 }
 
-const BlogPage = ({ posts }: BlogPageProps) => {
-  const featuredPost = posts.find(post => post.featured);
-  const regularPosts = posts.filter(post => !post.featured);
+const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
+  // Filter out the featured post from regular posts list
+  const regularPosts = featuredPost 
+    ? posts.filter(post => post.id !== featuredPost.id)
+    : posts;
   
   return (
     <Layout
@@ -200,16 +203,16 @@ const BlogPage = ({ posts }: BlogPageProps) => {
         {featuredPost && (
           <FeaturedPost>
             <FeaturedPostImage>
-              <Link href={`/blog/${featuredPost.id}`} passHref>
-                <img
-                  src={featuredPost.thumbnailUrl}
-                  alt={featuredPost.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </Link>
+              <Image
+                src={featuredPost.thumbnailUrl}
+                alt={featuredPost.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                style={{ objectFit: 'cover' }}
+              />
             </FeaturedPostImage>
             <FeaturedPostContent>
-              <FeaturedLabel>Featured Post</FeaturedLabel>
+              <FeaturedLabel>Featured</FeaturedLabel>
               <PostTitle>{featuredPost.title}</PostTitle>
               <PostMeta>
                 <span>{featuredPost.formattedDate}</span>
@@ -277,11 +280,13 @@ const BlogPage = ({ posts }: BlogPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllContent<BlogPost>('blog');
+  const allPosts = getAllContent<BlogPost>('blog');
+  const featuredContent = getFeaturedContent('blog');
   
   return {
     props: {
-      posts
+      posts: allPosts,
+      featuredPost: featuredContent.blogs[0] || null 
     }
   };
 };

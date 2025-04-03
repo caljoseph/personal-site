@@ -5,7 +5,6 @@ description: "Learn advanced TypeScript techniques and patterns for building sca
 tags: ["TypeScript", "JavaScript", "Programming", "Type Safety"]
 author: "Caleb Bradshaw"
 thumbnailUrl: "/images/project-placeholder.jpg"
-featured: false
 ---
 
 # Mastering TypeScript: Best Practices for Large Codebases

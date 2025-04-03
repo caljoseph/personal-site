@@ -139,19 +139,19 @@ interface HomePageProps {
 }
 
 export default function HomePage({ featuredContent }: HomePageProps) {
-  // Only show a maximum of 3 featured items, one from each category
+  // Show featured items as configured in featuredConfig.ts
   const featuredItems = [
-    ...featuredContent.blogs.slice(0, 1).map(blog => ({
+    ...featuredContent.blogs.map(blog => ({
       type: 'blog' as const,
       item: blog,
       link: `/blog/${blog.id}`
     })),
-    ...featuredContent.projects.slice(0, ).map(project => ({
+    ...featuredContent.projects.map(project => ({
       type: 'project' as const,
       item: project,
       link: `/projects/${project.id}`
     })),
-    ...featuredContent.research.slice(0, 2).map(research => ({
+    ...featuredContent.research.map(research => ({
       type: 'research' as const,
       item: research,
       link: `/research/${research.id}`
@@ -220,7 +220,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const featuredContent = getFeaturedContent();
+  const featuredContent = getFeaturedContent('home');
 
   return {
     props: {

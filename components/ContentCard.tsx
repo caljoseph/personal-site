@@ -15,20 +15,20 @@ const Card = styled.div<{ $isFeature?: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  ${({ $isFeature }) => !$isFeature && `
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-    }
-  `}
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+  }
 
   ${({ $isFeature }) => $isFeature && `
+    margin-bottom: 2rem;
+    
     @media (min-width: 768px) {
       flex-direction: row;
+      min-height: 300px;
     }
   `}
 `;
@@ -46,10 +46,12 @@ const ImageContainer = styled.div<{ $isFeature?: boolean }>`
   `}
 
   ${({ $isFeature }) => $isFeature && `
-    height: 300px;
-    
     @media (min-width: 768px) {
+      width: 40%;
       flex: 0 0 40%;
+      height: 100%;
+      position: relative;
+      min-height: 300px;
     }
     
     @media (max-width: 767px) {
@@ -67,6 +69,7 @@ const ContentContainer = styled.div<{ $isFeature?: boolean }>`
   ${({ $isFeature }) => $isFeature && `
     @media (min-width: 768px) {
       flex: 1;
+      padding: 2rem;
     }
   `}
   
@@ -75,10 +78,10 @@ const ContentContainer = styled.div<{ $isFeature?: boolean }>`
   }
 `;
 
-const TypeLabel = styled.span`
+const TypeLabel = styled.span<{ $isFeature?: boolean }>`
   display: inline-block;
-  background-color: var(--tag-background);
-  color: var(--accent);
+  background-color: ${props => props.$isFeature ? 'var(--accent)' : 'var(--tag-background)'};
+  color: ${props => props.$isFeature ? 'white' : 'var(--accent)'};
   border-radius: 9999px;
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
@@ -86,7 +89,7 @@ const TypeLabel = styled.span`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-weight: 600;
-  border: 1px solid var(--tag-border);
+  border: ${props => props.$isFeature ? 'none' : '1px solid var(--tag-border)'};
   width: fit-content;
 `;
 
@@ -177,11 +180,17 @@ const ContentCard: React.FC<ContentCardProps> = ({
               alt={title}
               fill
               sizes={isFeature ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 350px"}
-              style={{ objectFit: "cover" }}
+              style={{ 
+                objectFit: "cover",
+                width: "100%",
+                height: "100%"
+              }}
           />
         </ImageContainer>
         <ContentContainer $isFeature={isFeature}>
-          <TypeLabel>{type}</TypeLabel>
+          <TypeLabel $isFeature={isFeature}>
+            {isFeature ? `Featured ${type}` : type}
+          </TypeLabel>
           <Title $isFeature={isFeature}>{title}</Title>
           <MetaInfo>
             <span>{date}</span>

@@ -3,7 +3,6 @@ import path from 'path';
 import matter from 'gray-matter';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
-import remarkHtml from 'remark-html';
 import { format } from 'date-fns';
 import remarkRehype from 'remark-rehype';
 import rehypeHighlight from 'rehype-highlight';
@@ -25,7 +24,6 @@ interface ContentItem {
   tags: string[];
   thumbnailUrl: string;
   content: string;
-  featured?: boolean;
 }
 
 // Blog-specific fields
@@ -84,7 +82,6 @@ function parseContentFile(type: ContentType, fileName: string): any {
     tags: data.tags || [],
     thumbnailUrl: data.thumbnailUrl || `/images/${type}-placeholder.jpg`,
     content,
-    featured: data.featured || false,
     ...data // Include all other fields from the frontmatter
   };
 }
@@ -136,7 +133,6 @@ export function getContentById<T>(type: ContentType, id: string): T | null {
       tags: data.tags || [],
       thumbnailUrl: data.thumbnailUrl || `/images/${type}-placeholder.jpg`,
       content: processedContent,
-      featured: data.featured || false,
       ...data // Include all other fields from the frontmatter
     } as T;
   } catch (error) {
@@ -155,25 +151,35 @@ export function getAllContentPaths(type: ContentType): { params: { id: string } 
   }));
 }
 
-// Get featured content across all types
-export function getFeaturedContent(): {
+export function getFeaturedContent(page: 'home' | 'blog' | 'research' = 'home'): {
   blogs: BlogPost[];
   projects: Project[];
   research: Research[];
 } {
-  const blogs = getAllContent<BlogPost>('blog')
-    .filter(post => post.featured)
-    .slice(0, 1);  // Limit to 1 featured blog post
+  const allBlogs = getAllContent<BlogPost>('blog');
+  const allProjects = getAllContent<Project>('projects');
+  const allResearch = getAllContent<Research>('research');
   
-  const projects = getAllContent<Project>('projects')
-    .filter(project => project.featured)
-    .slice(0, 1);  // Limit to 1 featured project
+  const featured = require('./featuredConfig');
+  const ids = featured[page] || [];
   
-  const research = getAllContent<Research>('research')
-    .filter(item => item.featured)
-    .slice(0, 4);  // Limit to 1 featured research item
+  const result = {
+    blogs: [] as BlogPost[],
+    projects: [] as Project[],
+    research: [] as Research[]
+  };
+
+  for (const id of ids) {
+    const blog = allBlogs.find(item => item.id === id);
+    const project = allProjects.find(item => item.id === id);
+    const research = allResearch.find(item => item.id === id);
+    
+    if (blog) result.blogs.push(blog);
+    if (project) result.projects.push(project);
+    if (research) result.research.push(research);
+  }
   
-  return { blogs, projects, research };
+  return result;
 }
 
 // Calculate estimated reading time

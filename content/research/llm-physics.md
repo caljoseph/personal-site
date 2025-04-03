@@ -1,15 +1,14 @@
 ---
 title: "Designing a Physics Prediction Task for Evaluating LLM Reasoning"
 date: "2025-04-02"
-description: "A research project introducing a novel physics prediction benchmark for large language models, designed to evaluate calibration, consistency, and confidence based on output logits over integer answers."
+description: "A research project introducing a novel physics prediction benchmark for large language models"
 tags: ["LLMs", "Evaluation", "Physics", "Calibration", "Machine Learning"]
 authors: ["Caleb Bradshaw"]
 advisor: "Dr. Sean Warnick"
 venue: ""
 status: "Ongoing"
-type: "ongoing"
+type: "Experiment"
 thumbnailUrl: "/images/project-placeholder.jpg"
-featured: false
 ---
 
 # Designing a Physics Prediction Task for Evaluating LLM Reasoning
@@ -82,12 +81,6 @@ Physics problems offer a structured yet diverse domain where grounded reasoning 
 - Combine physics simulation engines to generate grounded problem instances.
 - Investigate fine-tuning or post-hoc calibration techniques for improving confidence accuracy.
 - Release the benchmark as an open-source toolkit for reproducible evaluation.
-
-## Research Team
-
-- **Caleb Bradshaw**: Lead researcher, benchmark design, implementation, and analysis
-- **Dr. Sean Warnick**: Faculty advisor, systems theory and interpretability
-- [Additional collaborators TBD]
 
 ## Acknowledgments
 

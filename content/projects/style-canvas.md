@@ -8,7 +8,6 @@ category: "web"
 thumbnailUrl: "/images/style-canvas.png"
 liveUrl: "https://stylecanvasai.com"
 repoUrl: "https://github.com/caljoseph/style-canvas"
-featured: true
 ---
 
 ## Project Overview

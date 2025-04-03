@@ -7,7 +7,7 @@ import TypewriterHeading from "@/components/TypewriterHeading";
 import Tag from "@/components/Tag";
 import TagContainer from "@/components/TagContainer";
 import { GetStaticProps } from 'next';
-import { getAllContent, Research } from '@/lib/content';
+import { getAllContent, getFeaturedContent, Research } from '@/lib/content';
 
 const ResearchContainer = styled.div`
   max-width: 1200px;
@@ -173,15 +173,69 @@ const PublicationAbstract = styled.div`
   }
 `;
 
+const FeaturedResearchItem = styled.div`
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const FeaturedResearchImage = styled.div`
+  flex: 0 0 40%;
+  background-color: var(--secondary);
+  position: relative;
+  min-height: 300px;
+  
+  @media (max-width: 768px) {
+    height: 200px;
+  }
+`;
+
+const FeaturedResearchContent = styled.div`
+  flex: 1;
+  padding: 2rem;
+`;
+
+const FeaturedLabel = styled.span`
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+`;
+
 interface ResearchPageProps {
-  researchItems: Research[];
+  researchItems: (Research & { isFeatured?: boolean })[];
+  featuredResearch: Research | null;
 }
 
-const ResearchPage = ({ researchItems }: ResearchPageProps) => {
+const ResearchPage = ({ researchItems, featuredResearch }: ResearchPageProps) => {
+  // Filter out the featured research item
+  const filteredItems = featuredResearch 
+    ? researchItems.filter(item => item.id !== featuredResearch.id)
+    : researchItems;
+    
   // Group research items by type
-  const ongoingResearch = researchItems.filter(item => item.type === 'ongoing');
-  const publications = researchItems.filter(item => item.type === 'publication');
-  const presentations = researchItems.filter(item => item.type === 'presentation');
+  const ongoingResearch = filteredItems.filter(item => item.type === 'ongoing');
+  const publications = filteredItems.filter(item => item.type === 'publication');
+  const presentations = filteredItems.filter(item => item.type === 'presentation');
   
   return (
     <Layout
@@ -193,6 +247,47 @@ const ResearchPage = ({ researchItems }: ResearchPageProps) => {
         <Subtitle>
           My research interests of the moment are NLP, ML Theory, and Predictive Modeling.
         </Subtitle>
+        
+        {featuredResearch && (
+          <FeaturedResearchItem>
+            <FeaturedResearchImage>
+              <Image
+                src={featuredResearch.thumbnailUrl}
+                alt={featuredResearch.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </FeaturedResearchImage>
+            <FeaturedResearchContent>
+              <FeaturedLabel>Featured</FeaturedLabel>
+              <ResearchTitle>{featuredResearch.title}</ResearchTitle>
+              <ResearchMeta>
+                {featuredResearch.authors && (
+                  <span>
+                    {featuredResearch.authors.join(', ')}
+                  </span>
+                )}
+                {featuredResearch.venue && (
+                  <span>{featuredResearch.venue}</span>
+                )}
+              </ResearchMeta>
+              <ResearchDescription>
+                <p>{featuredResearch.description}</p>
+              </ResearchDescription>
+              <TagContainer style={{marginBottom: '1.5rem'}}>
+                {featuredResearch.tags.map(tag => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </TagContainer>
+              <Link href={`/research/${featuredResearch.id}`} passHref legacyBehavior>
+                <ResearchLink>
+                  View Research <span>→</span>
+                </ResearchLink>
+              </Link>
+            </FeaturedResearchContent>
+          </FeaturedResearchItem>
+        )}
         
         {ongoingResearch.length > 0 && (
           <ResearchSection>
@@ -314,11 +409,22 @@ const ResearchPage = ({ researchItems }: ResearchPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const researchItems = getAllContent<Research>('research');
+  const allResearchItems = getAllContent<Research>('research');
+  const featuredContent = getFeaturedContent('research');
+  
+  // Mark featured research items
+  const researchItems = allResearchItems.map(item => {
+    const isFeatured = featuredContent.research.some(r => r.id === item.id);
+    return {
+      ...item,
+      isFeatured
+    };
+  });
   
   return {
     props: {
-      researchItems
+      researchItems,
+      featuredResearch: featuredContent.research[0] || null
     }
   };
 };

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import TypewriterHeading from "@/components/TypewriterHeading";
 import { GetStaticProps } from 'next';
-import { getAllContent, Project } from '@/lib/content';
+import { getAllContent, getFeaturedContent, Project } from '@/lib/content';
 import ContentCard from '@/components/ContentCard';
 
 const ProjectsContainer = styled.div`
@@ -73,7 +73,7 @@ const EmptyState = styled.div`
 `;
 
 interface ProjectsPageProps {
-  projects: Project[];
+  projects: (Project & { isFeatured?: boolean })[];
 }
 
 const ProjectsPage = ({ projects }: ProjectsPageProps) => {
@@ -156,7 +156,17 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const projects = getAllContent<Project>('projects');
+  const allProjects = getAllContent<Project>('projects');
+  const featuredContent = getFeaturedContent('projects');
+  
+  // Add a special property to featured projects
+  const projects = allProjects.map(project => {
+    const isFeatured = featuredContent.projects.some(p => p.id === project.id);
+    return {
+      ...project,
+      isFeatured
+    };
+  });
 
   return {
     props: {
