@@ -5,13 +5,6 @@ description: "Let's compute some gradients"
 tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
 author: "Caleb Bradshaw"
 ---
----
-title: "Wrapping Your Head Around Backpropagation"
-date: "2023-03-15"
-description: "A beginner-friendly walkthrough of how backpropagation works in neural networks — with math and Python."
-tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
-author: "Caleb Bradshaw"
----
 
 # Wrapping Your Head Around Backpropagation
 
