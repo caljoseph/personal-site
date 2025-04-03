@@ -5,7 +5,6 @@
   --font-body: 'Nunito Sans', sans-serif;
   --font-heading: 'Inclusive Sans', sans-serif;
 
-
   /* Dark theme colors */
   --primary: #3c3a36;
   --secondary: #5f5b57;
@@ -42,7 +41,23 @@
   box-sizing: border-box;
 }
 
+pre {
+  background-color: #1e1e1e;
+  color: #e0e0e0; /* Light text for dark background */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
 
+code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+}
+
+[data-theme='light'] pre {
+  background-color: #f6f5f2 !important;
+  color: #2c2b28 !important; /* Dark text for light background */
+}
 
 /* Base styles */
 body {
@@ -65,13 +80,7 @@ a {
 }
 
 a:hover {
-  color: #e6b35d;
-}
-
-a:focus,
-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(217, 152, 76, 0.3);
+  color: var(--accent);
 }
 
 img {
@@ -219,4 +228,3 @@ img {
     opacity: 1;
   }
 }
-

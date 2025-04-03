@@ -1,6 +1,6 @@
 # Caleb Bradshaw - Personal Portfolio
 
-A modern, minimalist portfolio website built with Next.js, TypeScript, and Styled Components showcasing professional experience, projects, research, and blog content.
+My portfolio website and blog built with Next.js, TypeScript, and Styled Components.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ A modern, minimalist portfolio website built with Next.js, TypeScript, and Style
 
 ## Overview
 
-This portfolio website is designed to be a professional showcase of your skills, experience, and work. It features:
+This portfolio website is designed to be a professional showcase of skills, experience, and work. It features:
 
 - Responsive design for all devices
 - Dark and light mode with user preference persistence
@@ -37,8 +37,8 @@ This portfolio website is designed to be a professional showcase of your skills,
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/personal-portfolio.git
-cd personal-portfolio
+git clone https://github.com/caljoseph/personal-site.git
+cd personal-site
 ```
 
 2. Install dependencies

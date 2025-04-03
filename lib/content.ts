@@ -5,6 +5,9 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkHtml from 'remark-html';
 import { format } from 'date-fns';
+import remarkRehype from 'remark-rehype';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeStringify from 'rehype-stringify';
 
 // Base content directory
 const contentDirectory = path.join(process.cwd(), 'content');
@@ -90,7 +93,7 @@ function parseContentFile(type: ContentType, fileName: string): any {
 export function getAllContent<T>(type: ContentType): T[] {
   const files = getContentFiles(type);
   const allContent = files.map(file => parseContentFile(type, file)) as T[];
-  
+
   // Sort by date, newest first
   return allContent.sort((a: any, b: any) => {
     if (a.date < b.date) {
@@ -111,13 +114,15 @@ export function getContentById<T>(type: ContentType, id: string): T | null {
     
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const { data, content: markdownContent } = matter(fileContents);
-    
-    // Process markdown to HTML
+
     const processedContent = unified()
-      .use(remarkParse)
-      .use(remarkHtml)
-      .processSync(markdownContent)
-      .toString();
+        .use(remarkParse)
+        .use(remarkRehype)        // convert to HTML AST
+        .use(rehypeHighlight)     // add syntax highlighting
+        .use(rehypeStringify)     // stringify HTML AST to string
+        .processSync(markdownContent)
+        .toString();
+
     
     // Create the content item with processed HTML
     return {

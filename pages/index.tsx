@@ -8,6 +8,7 @@ import CTAButton from "@/components/CTAButton";
 import { GetStaticProps } from 'next';
 import { getFeaturedContent, BlogPost, Project, Research } from '@/lib/content';
 import ContentCard from '@/components/ContentCard';
+import SpecialTypewriterHeading from "@/components/SpecialTypewriterHeading";
 
 const HeroSection = styled.section`
   display: flex;
@@ -137,7 +138,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
       >
         <HeroSection>
           <HeroContent>
-            <TypewriterHeading text="Hello there! I'm Caleb." delay={600} />
+            <SpecialTypewriterHeading delay={600} />
             <HeroSubtitle>
               Computer Science student at BYU with a passion for web development,
               machine learning, and problem solving
