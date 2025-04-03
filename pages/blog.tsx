@@ -230,9 +230,9 @@ const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
     >
       <BlogContainer>
         <TypewriterHeading text="Blog " />
-        <Subtitle>
-          Thoughts on computer science, mathematics, and software development
-        </Subtitle>
+        {/*<Subtitle>*/}
+        {/*  Thoughts on computer science, mathematics, and software development*/}
+        {/*</Subtitle>*/}
         
         {featuredPost && (
           <FeaturedPost>

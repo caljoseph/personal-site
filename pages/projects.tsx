@@ -94,11 +94,11 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
       >
         <ProjectsContainer>
           <TypewriterHeading text="My Projects " />
-          <Subtitle>
-            A collection of academic, personal, and professional projects I&apos;ve
-            worked on. These projects showcase my skills and interests in various
-            areas of computer science and software development.
-          </Subtitle>
+          {/*<Subtitle>*/}
+          {/*  A collection of academic, personal, and professional projects I&apos;ve*/}
+          {/*  worked on. These projects showcase my skills and interests in various*/}
+          {/*  areas of computer science and software development.*/}
+          {/*</Subtitle>*/}
 
           <FilterContainer>
             {categories.map(category => (

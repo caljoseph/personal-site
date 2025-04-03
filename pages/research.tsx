@@ -289,9 +289,9 @@ const ResearchPage = ({ researchItems, featuredResearch }: ResearchPageProps) =>
     >
       <ResearchContainer>
         <TypewriterHeading text="Research " />
-        <Subtitle>
-          My research interests of the moment are NLP, ML Theory, and Predictive Modeling.
-        </Subtitle>
+        {/*<Subtitle>*/}
+        {/*  My research interests of the moment are NLP, ML Theory, and Predictive Modeling.*/}
+        {/*</Subtitle>*/}
         
         {featuredResearch && (
           <FeaturedResearchItem>

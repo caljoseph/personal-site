@@ -357,11 +357,11 @@ const AboutPage = () => {
             <TimelineSubtitle>IDeA Labs, BYU</TimelineSubtitle>
             <TimelineContent>
               <p>
-                Working on machine learning research in narrative modeling and
-                LLM-driven forecasting.
+                Working on machine learning research in applied embedding and
+                LLM interpretability.
               </p>
               <p>
-                Contributed to a accpeted ACL paper on fiction scene
+                Contributed to a pending ACL paper on fiction scene
                 segmentation using signal-processing-inspired neural models.
               </p>
             </TimelineContent>
