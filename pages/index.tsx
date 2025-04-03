@@ -2,13 +2,12 @@ import React from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
 import Link from 'next/link';
-import TypewriterHeading from "@/components/TypewriterHeading";
-import OutlineButton from "@/components/OutlineButton";
-import CTAButton from "@/components/CTAButton";
+import OutlineButton from "@/components/buttons/OutlineButton";
+import CTAButton from "@/components/buttons/CTAButton";
 import { GetStaticProps } from 'next';
 import { getFeaturedContent, BlogPost, Project, Research } from '@/lib/content';
 import ContentCard from '@/components/ContentCard';
-import SpecialTypewriterHeading from "@/components/SpecialTypewriterHeading";
+import ColorTypewriterHeading from "@/components/ColorTypewriterHeading";
 
 const HeroSection = styled.section`
   display: flex;
@@ -166,7 +165,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
     >
       <HeroSection>
         <HeroContent>
-          <SpecialTypewriterHeading delay={600} />
+          <ColorTypewriterHeading delay={600} />
           <HeroSubtitle>
             <p>
               CS and Mathematics @ <span className="byu">BYU</span>

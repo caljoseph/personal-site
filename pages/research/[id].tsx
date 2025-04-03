@@ -6,9 +6,8 @@ import Image from 'next/image';
 import TagContainer from '@/components/TagContainer';
 import Tag from '@/components/Tag';
 import { getAllContentPaths, getContentById, Research } from '@/lib/content';
-import CTAButton from '@/components/CTAButton';
-import OutlineButton from '@/components/OutlineButton';
-import ArxivButton from "@/components/ArxivButton";
+import OutlineButton from '@/components/buttons/OutlineButton';
+import ArxivButton from "@/components/buttons/ArxivButton";
 
 // Styled components for the research page
 const ResearchContainer = styled.div`

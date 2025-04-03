@@ -6,8 +6,8 @@ import Image from 'next/image';
 import TagContainer from '@/components/TagContainer';
 import Tag from '@/components/Tag';
 import { getAllContentPaths, getContentById, Project } from '@/lib/content';
-import CTAButton from '@/components/CTAButton';
-import OutlineButton from '@/components/OutlineButton';
+import CTAButton from '@/components/buttons/CTAButton';
+import OutlineButton from '@/components/buttons/OutlineButton';
 
 // Styled components for the project page
 const ProjectContainer = styled.div`

@@ -38,7 +38,7 @@ const ColoredText = styled.span<{ gradient?: string; color?: string }>`
     background-clip: ${props => props.gradient ? 'text' : 'none'};
 `;
 
-interface SpecialTypewriterHeadingProps {
+interface ColorTypewriterHeadingProps {
     prefix?: string;
     initialName?: string;
     roles?: Array<{
@@ -53,7 +53,7 @@ interface SpecialTypewriterHeadingProps {
     delay?: number;
 }
 
-const SpecialTypewriterHeading: React.FC<SpecialTypewriterHeadingProps> = ({
+const ColorTypewriterHeading: React.FC<ColorTypewriterHeadingProps> = ({
                                                                                prefix = "Hi there! I'm ",
                                                                                initialName = "Caleb.",
                                                                                roles = [
@@ -190,4 +190,4 @@ const SpecialTypewriterHeading: React.FC<SpecialTypewriterHeadingProps> = ({
     );
 };
 
-export default SpecialTypewriterHeading;
+export default ColorTypewriterHeading;

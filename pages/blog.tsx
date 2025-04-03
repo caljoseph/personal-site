@@ -5,8 +5,7 @@ import Link from 'next/link';
 import TypewriterHeading from "@/components/TypewriterHeading";
 import { GetStaticProps } from 'next';
 import { getAllContent, BlogPost } from '@/lib/content';
-import ContentCard from '@/components/ContentCard';
-import CTAButton from '@/components/CTAButton';
+
 import TagContainer from "@/components/TagContainer";
 import Tag from "@/components/Tag";
 
