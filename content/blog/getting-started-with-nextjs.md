@@ -6,8 +6,6 @@ tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
 author: "Caleb Bradshaw"
 ---
 
-# Wrapping Your Head Around Backpropagation
-
 Backpropagation is one of the most important concepts in modern machine learning, especially for training neural networks. Despite its foundational role, it’s often treated like a black box. In this guide, we’ll break it down step-by-step, demystify the math, and implement a basic version in Python so you can see it working in action.
 
 ## What is Backpropagation?
