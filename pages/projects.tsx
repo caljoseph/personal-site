@@ -156,17 +156,7 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allProjects = getAllContent<Project>('projects');
-  const featuredContent = getFeaturedContent('projects');
-  
-  // Add a special property to featured projects
-  const projects = allProjects.map(project => {
-    const isFeatured = featuredContent.projects.some(p => p.id === project.id);
-    return {
-      ...project,
-      isFeatured
-    };
-  });
+  const projects = getAllContent<Project>('projects');
 
   return {
     props: {
