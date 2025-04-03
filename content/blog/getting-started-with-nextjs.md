@@ -1,7 +1,7 @@
 ---
 title: "Wrapping Your Head Around Backpropagation"
 date: "2025-04-02"
-description: "Let's go through "
+description: "Let's compute some gradients"
 tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
 author: "Caleb Bradshaw"
 ---
