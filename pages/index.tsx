@@ -170,7 +170,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
             <p>
               CS and Mathematics @ <span className="byu">BYU</span>
             </p>
-            <p>I write about code, cognition, and whatever catches my eye.</p>
+            <p>I write about code, AI/ML, and whatever catches my eye.</p>
           </HeroSubtitle>
           <HeroButtons>
             <Link href="/projects" passHref legacyBehavior>
