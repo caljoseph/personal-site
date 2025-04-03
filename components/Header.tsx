@@ -24,18 +24,20 @@ const Nav = styled.nav`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
 `;
 
 const NavActions = styled.div`
   display: flex;
   align-items: center;
+  height: 100%;
 `;
 
 const StyledThemeToggle = styled(ThemeToggle)`
   margin-left: 2rem;
 
   @media (max-width: 768px) {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
   }
 `;
 
@@ -133,6 +135,7 @@ const MenuToggle = styled.button`
   cursor: pointer;
   padding: 0.5rem;
   margin-left: auto;
+  align-self: center;
 
   @media (max-width: 768px) {
     display: block;
@@ -207,7 +210,9 @@ const Header: React.FC = () => {
                 <MenuLink $active={router.pathname === '/cv'}>CV</MenuLink>
               </Link>
             </MenuItem>
-            <StyledThemeToggle />
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <StyledThemeToggle />
+            </div>
           </MenuItems>
         </Nav>
       </HeaderContainer>

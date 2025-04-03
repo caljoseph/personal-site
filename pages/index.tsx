@@ -71,10 +71,10 @@ const HeroButtons = styled.div`
 `;
 
 const SectionWrapper = styled.div`
-  padding: 4rem 2rem 5rem;
+  padding: 0 2rem 5rem 2rem; // Only horizontal padding + bottom
 
   @media (max-width: 768px) {
-    padding: 3rem 1rem;
+    padding: 0 1rem 3rem 1rem;
   }
 `;
 

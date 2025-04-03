@@ -117,8 +117,9 @@ const PublicationsList = styled.div`
 const PublicationItem = styled.div`
   display: flex;
   gap: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
   
   &:last-child {
     border-bottom: none;
@@ -127,6 +128,7 @@ const PublicationItem = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
+    padding-bottom: 2rem;
     margin-bottom: 2rem;
   }
 `;
@@ -181,6 +183,8 @@ const PublicationAbstract = styled.div`
   
   p {
     margin-bottom: 0.5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 `;
 
@@ -347,17 +351,21 @@ const ResearchPage = ({ researchItems, featuredResearch }: ResearchPageProps) =>
             <PublicationsList>
               {publications.map(publication => (
                 <PublicationItem key={publication.id}>
-                  <PublicationThumbnail>
-                    <Image
-                      src={publication.thumbnailUrl}
-                      alt={publication.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 200px"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </PublicationThumbnail>
+                  <Link href={`/research/${publication.id}`} passHref style={{ textDecoration: 'none' }}>
+                    <PublicationThumbnail>
+                      <Image
+                        src={publication.thumbnailUrl}
+                        alt={publication.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 200px"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    </PublicationThumbnail>
+                  </Link>
                   <PublicationContent>
-                    <PublicationTitle>{publication.title}</PublicationTitle>
+                    <Link href={`/research/${publication.id}`} passHref style={{ textDecoration: 'none', color: 'var(--text)' }}>
+                      <PublicationTitle>{publication.title}</PublicationTitle>
+                    </Link>
                     {publication.authors && (
                       <PublicationAuthors>
                         {publication.authors.map((author, index) => (

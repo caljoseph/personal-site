@@ -41,6 +41,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 pre {
   background-color: #1e1e1e;
   color: #e0e0e0; /* Light text for dark background */

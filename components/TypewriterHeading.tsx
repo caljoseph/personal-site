@@ -6,8 +6,13 @@ const StyledHeading = styled.h1`
     margin-bottom: 1.5rem;
     max-width: 100%;
     overflow-x: hidden;
+    height: auto;
+    
     @media (max-width: 768px) {
         font-size: 2rem;
+        min-height: 4rem;
+        white-space: normal;
+        overflow-wrap: break-word;
     }
 `;
 

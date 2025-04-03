@@ -97,6 +97,9 @@ const Title = styled.h3<{ $isFeature?: boolean }>`
   font-size: ${props => props.$isFeature ? '1.75rem' : '1.5rem'};
   margin-bottom: 0.75rem;
   color: var(--text);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
   
   @media (max-width: 768px) {
     font-size: ${props => props.$isFeature ? '1.5rem' : '1.3rem'};
@@ -109,11 +112,18 @@ const MetaInfo = styled.div`
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 `;
 
 const Description = styled.p`
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   
   @media (max-width: 768px) {
     font-size: 0.95rem;
@@ -174,24 +184,28 @@ const ContentCard: React.FC<ContentCardProps> = ({
                                                  }) => {
   return (
       <Card $isFeature={isFeature}>
-        <ImageContainer $isFeature={isFeature}>
-          <Image
-              src={imageSrc}
-              alt={title}
-              fill
-              sizes={isFeature ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 350px"}
-              style={{ 
-                objectFit: "cover",
-                width: "100%",
-                height: "100%"
-              }}
-          />
-        </ImageContainer>
+        <Link href={links[0]?.href || "#"} passHref style={{ textDecoration: 'none' }}>
+          <ImageContainer $isFeature={isFeature}>
+            <Image
+                src={imageSrc}
+                alt={title}
+                fill
+                sizes={isFeature ? "(max-width: 768px) 100vw, 40vw" : "(max-width: 768px) 100vw, 350px"}
+                style={{ 
+                  objectFit: "cover",
+                  width: "100%",
+                  height: "100%"
+                }}
+            />
+          </ImageContainer>
+        </Link>
         <ContentContainer $isFeature={isFeature}>
           <TypeLabel $isFeature={isFeature}>
             {isFeature ? `Featured ${type}` : type}
           </TypeLabel>
-          <Title $isFeature={isFeature}>{title}</Title>
+          <Link href={links[0]?.href || "#"} passHref style={{ textDecoration: 'none', color: 'var(--text)' }}>
+            <Title $isFeature={isFeature}>{title}</Title>
+          </Link>
           <MetaInfo>
             <span>{date}</span>
             {metaRight && <span>{metaRight}</span>}

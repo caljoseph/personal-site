@@ -109,6 +109,8 @@ const PostMeta = styled.div`
 const PostDescription = styled.p`
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 `;
 
 const ReadMoreLink = styled.a`
@@ -129,8 +131,9 @@ const ReadMoreLink = styled.a`
 const BlogItem = styled.div`
   display: flex;
   gap: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
   
   &:last-child {
     border-bottom: none;
@@ -139,6 +142,7 @@ const BlogItem = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
+    padding-bottom: 2rem;
     margin-bottom: 2rem;
   }
 `;
@@ -252,8 +256,8 @@ const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
         <BlogList>
           {regularPosts.map(post => (
             <BlogItem key={post.id}>
-              <BlogThumbnail>
-                <Link href={`/blog/${post.id}`} passHref>
+              <Link href={`/blog/${post.id}`} passHref style={{ textDecoration: 'none' }}>
+                <BlogThumbnail>
                   <Image
                     src={post.thumbnailUrl}
                     alt={post.title}
@@ -261,10 +265,12 @@ const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
                     sizes="(max-width: 768px) 100vw, 200px"
                     style={{ objectFit: 'cover' }}
                   />
-                </Link>
-              </BlogThumbnail>
+                </BlogThumbnail>
+              </Link>
               <BlogContent>
-                <PostTitle>{post.title}</PostTitle>
+                <Link href={`/blog/${post.id}`} passHref style={{ textDecoration: 'none', color: 'var(--text)' }}>
+                      <PostTitle>{post.title}</PostTitle>
+                    </Link>
                 <PostMeta>
                   <span>{post.formattedDate}</span>
                   <span>{post.readingTime}</span>
