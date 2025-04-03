@@ -11,6 +11,7 @@ const HeaderContainer = styled.header`
   top: 0;
   z-index: 100;
   transition: padding 0.3s ease;
+  width: 100%;
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -21,6 +22,8 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 const NavActions = styled.div`
@@ -47,6 +50,10 @@ const Logo = styled.a`
   letter-spacing: 0.05em;
   display: inline-flex;
   gap: 0.05em;
+  
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Letter = styled.span`
@@ -124,6 +131,8 @@ const MenuToggle = styled.button`
   color: var(--text);
   font-size: 1.5rem;
   cursor: pointer;
+  padding: 0.5rem;
+  margin-left: auto;
 
   @media (max-width: 768px) {
     display: block;

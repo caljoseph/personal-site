@@ -18,6 +18,8 @@ const AppContainer = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
+  width: 100%;
+  overflow-x: hidden;
 `;
 
 const Layout: React.FC<LayoutProps> = ({ children, title = 'Caleb Bradshaw', description = 'Personal website of Caleb Bradshaw' }) => {

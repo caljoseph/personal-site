@@ -18,10 +18,13 @@ const FooterContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  width: 100%;
   
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 `;
 

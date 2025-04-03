@@ -77,6 +77,12 @@ const ResearchMeta = styled.div`
   span.highlight {
     color: var(--accent);
   }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
 `;
 
 const ResearchDescription = styled.div`
@@ -121,6 +127,7 @@ const PublicationItem = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -134,6 +141,7 @@ const PublicationThumbnail = styled.div`
   @media (max-width: 768px) {
     flex: 0 0 100%;
     height: 200px;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -145,6 +153,9 @@ const PublicationTitle = styled.h3`
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
   color: var(--text);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 `;
 
 const PublicationAuthors = styled.p`
@@ -206,6 +217,10 @@ const FeaturedResearchImage = styled.div`
 const FeaturedResearchContent = styled.div`
   flex: 1;
   padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const FeaturedLabel = styled.span`

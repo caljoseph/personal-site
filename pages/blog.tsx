@@ -65,6 +65,10 @@ const FeaturedPostImage = styled.div`
 const FeaturedPostContent = styled.div`
   flex: 1;
   padding: 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 `;
 
 const FeaturedLabel = styled.span`
@@ -84,6 +88,9 @@ const PostTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: var(--text);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 `;
 
 const PostMeta = styled.div`
@@ -92,6 +99,11 @@ const PostMeta = styled.div`
   margin-bottom: 1rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 `;
 
 const PostDescription = styled.p`
@@ -127,6 +139,7 @@ const BlogItem = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -140,6 +153,7 @@ const BlogThumbnail = styled.div`
   @media (max-width: 768px) {
     flex: 0 0 100%;
     height: 200px;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -240,10 +254,12 @@ const BlogPage = ({ posts, featuredPost }: BlogPageProps) => {
             <BlogItem key={post.id}>
               <BlogThumbnail>
                 <Link href={`/blog/${post.id}`} passHref>
-                  <img
+                  <Image
                     src={post.thumbnailUrl}
                     alt={post.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 200px"
+                    style={{ objectFit: 'cover' }}
                   />
                 </Link>
               </BlogThumbnail>

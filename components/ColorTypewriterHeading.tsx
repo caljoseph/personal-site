@@ -11,6 +11,8 @@ const StyledHeading = styled.h1`
 
     @media (max-width: 768px) {
         font-size: 2rem;
+        white-space: normal;
+        overflow-wrap: break-word;
     }
 `;
 

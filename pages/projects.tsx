@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import styled from 'styled-components';
-import Link from 'next/link';
 import TypewriterHeading from "@/components/TypewriterHeading";
 import { GetStaticProps } from 'next';
-import { getAllContent, getFeaturedContent, Project } from '@/lib/content';
+import { getAllContent,  Project } from '@/lib/content';
 import ContentCard from '@/components/ContentCard';
 
 const ProjectsContainer = styled.div`
