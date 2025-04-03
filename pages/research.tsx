@@ -191,8 +191,7 @@ const ResearchPage = ({ researchItems }: ResearchPageProps) => {
       <ResearchContainer>
         <TypewriterHeading text="Research " />
         <Subtitle>
-          Exploring the intersection of computer science and mathematics through academic research. 
-          My work focuses on algorithm optimization, computational complexity, and applied machine learning.
+          My research interests of the moment are NLP, ML Theory, and Predictive Modeling.
         </Subtitle>
         
         {ongoingResearch.length > 0 && (

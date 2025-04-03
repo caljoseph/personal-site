@@ -8,6 +8,7 @@ import Tag from '@/components/Tag';
 import { getAllContentPaths, getContentById, Research } from '@/lib/content';
 import CTAButton from '@/components/CTAButton';
 import OutlineButton from '@/components/OutlineButton';
+import ArxivButton from "@/components/ArxivButton";
 
 // Styled components for the research page
 const ResearchContainer = styled.div`
@@ -336,7 +337,7 @@ export default function ResearchPage({ research }: ResearchPageProps) {
               </OutlineButton>
             )}
             {research.arxivUrl && (
-              <CTAButton 
+              <ArxivButton
                 href={research.arxivUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -348,7 +349,7 @@ export default function ResearchPage({ research }: ResearchPageProps) {
                   <path d="M14 7v-.5a.5.5 0 0 0-1 0V7h-.5a.5.5 0 0 0 0 1H13v.5a.5.5 0 0 0 1 0V8h.5a.5.5 0 0 0 0-1H14z"/>
                 </svg>
                 arXiv
-              </CTAButton>
+              </ArxivButton>
             )}
           </ButtonContainer>
         )}

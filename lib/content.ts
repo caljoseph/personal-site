@@ -171,7 +171,7 @@ export function getFeaturedContent(): {
   
   const research = getAllContent<Research>('research')
     .filter(item => item.featured)
-    .slice(0, 1);  // Limit to 1 featured research item
+    .slice(0, 4);  // Limit to 1 featured research item
   
   return { blogs, projects, research };
 }

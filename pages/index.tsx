@@ -119,12 +119,12 @@ export default function HomePage({ featuredContent }: HomePageProps) {
       item: blog,
       link: `/blog/${blog.id}`
     })),
-    ...featuredContent.projects.slice(0, 1).map(project => ({
+    ...featuredContent.projects.slice(0, ).map(project => ({
       type: 'project' as const,
       item: project,
       link: `/projects/${project.id}`
     })),
-    ...featuredContent.research.slice(0, 1).map(research => ({
+    ...featuredContent.research.slice(0, 2).map(research => ({
       type: 'research' as const,
       item: research,
       link: `/research/${research.id}`
@@ -132,58 +132,63 @@ export default function HomePage({ featuredContent }: HomePageProps) {
   ];
 
   return (
-      <Layout
-          title="Caleb Bradshaw | Home"
-          description="Personal website of Caleb Bradshaw - Computer Science Student at BYU"
-      >
-        <HeroSection>
-          <HeroContent>
-            <SpecialTypewriterHeading delay={600} />
-            <HeroSubtitle>
-              Computer Science student at BYU with a passion for web development,
-              machine learning, and problem solving
-            </HeroSubtitle>
-            <HeroButtons>
-              <Link href="/projects" passHref legacyBehavior>
-                <CTAButton>View My Projects</CTAButton>
-              </Link>
-              <Link href="/about" passHref legacyBehavior>
-                <OutlineButton>Learn More About Me</OutlineButton>
-              </Link>
-            </HeroButtons>
-          </HeroContent>
-        </HeroSection>
+    <Layout
+      title="Caleb Bradshaw | Home"
+      description="Personal website of Caleb Bradshaw - Computer Science Student at BYU"
+    >
+      <HeroSection>
+        <HeroContent>
+          <SpecialTypewriterHeading delay={600} />
+          <HeroSubtitle>
+            <p>
+              CS and Mathematics @ <span className="byu">BYU</span>
+            </p>
+            <p>I write about code, cognition, and whatever catches my eye.</p>
+          </HeroSubtitle>
+          <HeroButtons>
+            <Link href="/projects" passHref legacyBehavior>
+              <CTAButton>View My Projects</CTAButton>
+            </Link>
+            <Link href="/about" passHref legacyBehavior>
+              <OutlineButton>Learn More About Me</OutlineButton>
+            </Link>
+          </HeroButtons>
+        </HeroContent>
+      </HeroSection>
 
-        <SectionWrapper>
-          <SectionContent>
-            <SectionTitle>Featured Work</SectionTitle>
-            <FeaturedGrid>
-              {featuredItems.map(({ type, item, link }) => (
-                  <ContentCard
-                      key={`${type}-${item.id}`}
-                      title={item.title}
-                      description={item.description}
-                      imageSrc={item.thumbnailUrl}
-                      date={item.formattedDate}
-                      tags={item.tags}
-                      type={type}
-                      metaRight={type === 'blog' ? (item as BlogPost).readingTime : undefined}
-                      links={[
-                        {
-                          text: type === 'blog'
-                              ? 'Read Post'
-                              : type === 'project'
-                                  ? 'View Project'
-                                  : 'View Research',
-                          href: link
-                        }
-                      ]}
-                  />
-              ))}
-            </FeaturedGrid>
-          </SectionContent>
-        </SectionWrapper>
-      </Layout>
+      <SectionWrapper>
+        <SectionContent>
+          <SectionTitle>Featured Work</SectionTitle>
+          <FeaturedGrid>
+            {featuredItems.map(({ type, item, link }) => (
+              <ContentCard
+                key={`${type}-${item.id}`}
+                title={item.title}
+                description={item.description}
+                imageSrc={item.thumbnailUrl}
+                date={item.formattedDate}
+                tags={item.tags}
+                type={type}
+                metaRight={
+                  type === 'blog' ? (item as BlogPost).readingTime : undefined
+                }
+                links={[
+                  {
+                    text:
+                      type === 'blog'
+                        ? 'Read Post'
+                        : type === 'project'
+                          ? 'View Project'
+                          : 'View Research',
+                    href: link,
+                  },
+                ]}
+              />
+            ))}
+          </FeaturedGrid>
+        </SectionContent>
+      </SectionWrapper>
+    </Layout>
   );
 }
 

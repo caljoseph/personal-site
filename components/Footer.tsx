@@ -110,14 +110,14 @@ const Footer: React.FC = () => {
             Computer Science student at BYU with a passion for software development and mathematics.
           </p>
           <SocialIcons>
-            <SocialIcon href="https://github.com/" target="_blank" rel="noopener noreferrer">
+            <SocialIcon href="https://github.com/caljoseph" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-github"></i>
             </SocialIcon>
-            <SocialIcon href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer">
+            <SocialIcon href="https://linkedin.com/in/caleb-bradshaw" target="_blank" rel="noopener noreferrer">
               <i className="fab fa-linkedin"></i>
             </SocialIcon>
-            <SocialIcon href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-              <i className="fab fa-twitter"></i>
+            <SocialIcon href="https://www.instagram.com/calebjbradshaw/" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i>
             </SocialIcon>
           </SocialIcons>
         </FooterSection>
@@ -162,18 +162,18 @@ const Footer: React.FC = () => {
           <FooterTitle>Contact</FooterTitle>
           <FooterList>
             <FooterListItem>
-              <FooterLink href="mailto:caleb.bradshaw@example.com">
-                caleb.bradshaw@example.com
+              <FooterLink href="mailto:calebjosephbradshaw@gmail.com">
+                calebjosephbradshaw@gmail.com
               </FooterLink>
             </FooterListItem>
             <FooterListItem>
-              <FooterLink href="tel:+1234567890">
-                (123) 456-7890
+              <FooterLink href="tel:+18018675892">
+                (801) 867-5892
               </FooterLink>
             </FooterListItem>
             <FooterListItem>
               <span style={{ color: 'var(--text-secondary)' }}>
-                Provo, Utah
+                Salt Lake City, Utah
               </span>
             </FooterListItem>
           </FooterList>

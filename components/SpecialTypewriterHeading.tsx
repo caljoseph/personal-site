@@ -52,7 +52,7 @@ interface SpecialTypewriterHeadingProps {
 }
 
 const SpecialTypewriterHeading: React.FC<SpecialTypewriterHeadingProps> = ({
-                                                                               prefix = "Hello there! I'm ",
+                                                                               prefix = "Hi there! I'm ",
                                                                                initialName = "Caleb.",
                                                                                roles = [
                                                                                    {

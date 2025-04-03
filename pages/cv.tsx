@@ -229,276 +229,183 @@ const ProgressBar = styled.div`
 
 const CVPage = () => {
   return (
-    <Layout
-      title="CV | Caleb Bradshaw"
-      description="Curriculum Vitae and professional experience of Caleb Bradshaw"
-    >
-      <CVContainer>
-        <TypewriterHeading text="Curriculum Vitae " />
-        <Subtitle>
-          A detailed overview of my academic and professional experience, skills, and achievements.
-        </Subtitle>
-        
-        <DownloadButton href="#" target="_blank" rel="noopener noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" y1="15" x2="12" y2="3"></line>
-          </svg>
-          Download PDF Version
-        </DownloadButton>
-        
-        <CVSection>
-          <SectionTitle>Education</SectionTitle>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>Bachelor of Science in Computer Science</EntryTitle>
-              <EntryDate>2021 - Present</EntryDate>
-            </EntryHeader>
-            <EntrySubtitle>Brigham Young University, Provo, UT</EntrySubtitle>
-            <EntryDescription>
-              <p>Minor in Mathematics</p>
-              <p>GPA: 3.85/4.0</p>
-              <p>Expected Graduation: May 2025</p>
-              <p>Relevant Coursework:</p>
-              <ul>
-                <li>Advanced Algorithms and Data Structures</li>
-                <li>Machine Learning and Artificial Intelligence</li>
-                <li>Database Systems Design</li>
-                <li>Computer Networks and Distributed Systems</li>
-                <li>Software Engineering Principles</li>
-                <li>Web Development (Frontend and Backend)</li>
-                <li>Linear Algebra and Discrete Mathematics</li>
-                <li>Statistics and Probability for Computer Science</li>
-              </ul>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>High School Diploma</EntryTitle>
-              <EntryDate>2017 - 2021</EntryDate>
-            </EntryHeader>
-            <EntrySubtitle>Westview High School, Portland, OR</EntrySubtitle>
-            <EntryDescription>
-              <p>Valedictorian</p>
-              <p>GPA: 4.0/4.0</p>
-              <p>Advanced Placement Courses: Computer Science, Calculus BC, Physics, Statistics</p>
-              <p>Founded and led the school&apos;s Robotics Club and participated in regional competitions</p>
-            </EntryDescription>
-          </CVEntry>
-        </CVSection>
-        
-        <CVSection>
-          <SectionTitle>Work Experience</SectionTitle>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>Software Engineering Intern</EntryTitle>
-              <EntryDate>Summer 2023</EntryDate>
-            </EntryHeader>
-            <EntrySubtitle>Tech Innovations Inc., Salt Lake City, UT</EntrySubtitle>
-            <EntryDescription>
-              <ul>
-                <li>Developed and maintained web applications using React, TypeScript, and Node.js in an agile team environment</li>
-                <li>Designed and implemented RESTful APIs to connect frontend and backend services, improving data retrieval efficiency by 30%</li>
-                <li>Collaborated with UX designers to implement responsive user interfaces following design specifications</li>
-                <li>Participated in code reviews and pair programming sessions to maintain code quality and share knowledge</li>
-                <li>Created automated tests using Jest and React Testing Library, increasing test coverage by 25%</li>
-              </ul>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>Research Assistant</EntryTitle>
-              <EntryDate>2022 - Present</EntryDate>
-            </EntryHeader>
-            <EntrySubtitle>BYU Computer Science Department, Provo, UT</EntrySubtitle>
-            <EntryDescription>
-              <ul>
-                <li>Conduct research on algorithm optimization for large-scale graph processing under the supervision of Dr. Robert Johnson</li>
-                <li>Implement and evaluate various algorithms for community detection and influence propagation in social networks</li>
-                <li>Analyze performance metrics and optimize code for efficiency, achieving a 40% improvement in processing time</li>
-                <li>Contribute to research papers and presentations for academic conferences</li>
-                <li>Collaborate with other researchers on interdisciplinary projects combining computer science and mathematical concepts</li>
-              </ul>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>Teaching Assistant</EntryTitle>
-              <EntryDate>2021 - 2022</EntryDate>
-            </EntryHeader>
-            <EntrySubtitle>BYU Department of Computer Science, Provo, UT</EntrySubtitle>
-            <EntryDescription>
-              <ul>
-                <li>Assisted professors in teaching introductory programming courses (CS 142: Introduction to Computer Programming)</li>
-                <li>Conducted lab sessions, provided one-on-one help to students, and graded assignments and exams</li>
-                <li>Developed supplementary teaching materials to help students better understand complex programming concepts</li>
-                <li>Held weekly office hours to provide additional support for struggling students</li>
-                <li>Received a student satisfaction rating of 4.8/5.0 based on end-of-semester evaluations</li>
-              </ul>
-            </EntryDescription>
-          </CVEntry>
-        </CVSection>
-        
-        <CVSection>
-          <SectionTitle>Skills</SectionTitle>
-          
-          <SkillsContainer>
-            <SkillCategory>
-              <h3>Programming Languages</h3>
-              <SkillList>
-                <li>JavaScript/TypeScript</li>
-                <li>Python</li>
-                <li>Java</li>
-                <li>C++</li>
-                <li>SQL</li>
-                <li>HTML/CSS</li>
-              </SkillList>
-            </SkillCategory>
-            
-            <SkillCategory>
-              <h3>Frameworks & Libraries</h3>
-              <SkillList>
-                <li>React.js</li>
-                <li>Node.js</li>
-                <li>Express.js</li>
-                <li>Django</li>
-                <li>TensorFlow</li>
-                <li>Pandas & NumPy</li>
-              </SkillList>
-            </SkillCategory>
-            
-            <SkillCategory>
-              <h3>Tools & Platforms</h3>
-              <SkillList>
-                <li>Git/GitHub</li>
-                <li>Docker</li>
-                <li>AWS</li>
-                <li>MongoDB</li>
-                <li>PostgreSQL</li>
-                <li>RESTful APIs</li>
-              </SkillList>
-            </SkillCategory>
-            
-            <SkillCategory>
-              <h3>Concepts & Methodologies</h3>
-              <SkillList>
-                <li>Algorithm Design</li>
-                <li>Data Structures</li>
-                <li>Object-Oriented Programming</li>
-                <li>Agile Development</li>
-                <li>Test-Driven Development</li>
-                <li>CI/CD Pipelines</li>
-              </SkillList>
-            </SkillCategory>
-          </SkillsContainer>
-        </CVSection>
-        
-        <CVSection>
-          <SectionTitle>Languages</SectionTitle>
-          
-          <LanguageSkill>
-            <h4>English</h4>
-            <ProgressBar>
-              <div style={{ width: '100%' }}></div>
-            </ProgressBar>
-          </LanguageSkill>
-          
-          <LanguageSkill>
-            <h4>Spanish</h4>
-            <ProgressBar>
-              <div style={{ width: '80%' }}></div>
-            </ProgressBar>
-          </LanguageSkill>
-          
-          <LanguageSkill>
-            <h4>French</h4>
-            <ProgressBar>
-              <div style={{ width: '40%' }}></div>
-            </ProgressBar>
-          </LanguageSkill>
-        </CVSection>
-        
-        <CVSection>
-          <SectionTitle>Awards & Achievements</SectionTitle>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>Dean&apos;s List</EntryTitle>
-              <EntryDate>2021 - Present</EntryDate>
-            </EntryHeader>
-            <EntryDescription>
-              <p>Consistently maintained a GPA above 3.8, earning a place on the Dean&apos;s List for academic excellence.</p>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>BYU Merit Scholarship</EntryTitle>
-              <EntryDate>2021 - Present</EntryDate>
-            </EntryHeader>
-            <EntryDescription>
-              <p>Awarded a merit-based scholarship covering 75% of tuition for academic achievement and leadership potential.</p>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>2nd Place, BYU Hackathon</EntryTitle>
-              <EntryDate>October 2022</EntryDate>
-            </EntryHeader>
-            <EntryDescription>
-              <p>Led a team of four students to develop an innovative application for campus navigation using augmented reality, earning second place among 30 competing teams.</p>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>National Merit Finalist</EntryTitle>
-              <EntryDate>2021</EntryDate>
-            </EntryHeader>
-            <EntryDescription>
-              <p>Recognized as a National Merit Finalist based on outstanding PSAT/NMSQT scores and academic performance.</p>
-            </EntryDescription>
-          </CVEntry>
-        </CVSection>
-        
-        <CVSection>
-          <SectionTitle>Certifications</SectionTitle>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>AWS Certified Developer - Associate</EntryTitle>
-              <EntryDate>May 2023</EntryDate>
-            </EntryHeader>
-            <EntryDescription>
-              <p>Certification demonstrating expertise in developing, deploying, and debugging cloud-based applications using AWS.</p>
-            </EntryDescription>
-          </CVEntry>
-          
-          <CVEntry>
-            <EntryHeader>
-              <EntryTitle>Microsoft Certified: Azure Fundamentals</EntryTitle>
-              <EntryDate>January 2023</EntryDate>
-            </EntryHeader>
-            <EntryDescription>
-              <p>Foundational certification validating understanding of cloud concepts, Azure services, security, privacy, compliance, and trust.</p>
-            </EntryDescription>
-          </CVEntry>
-        </CVSection>
-        
-        <CVSection>
-          <SectionTitle>References</SectionTitle>
-          <p style={{ color: 'var(--text-secondary)' }}>Available upon request.</p>
-        </CVSection>
-      </CVContainer>
-    </Layout>
+      <Layout
+          title="CV | Caleb Bradshaw"
+          description="Curriculum Vitae and professional experience of Caleb Bradshaw"
+      >
+        <CVContainer>
+          <TypewriterHeading text="Curriculum Vitae" />
+          <Subtitle>
+            A detailed overview of my academic and professional experience, skills, and achievements.
+          </Subtitle>
+
+          <DownloadButton href="/Caleb_Bradshaw_CV.pdf" download target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download PDF Version
+          </DownloadButton>
+
+          <CVSection>
+            <SectionTitle>Education</SectionTitle>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Bachelor of Science in Computer Science</EntryTitle>
+                <EntryDate>2019 - Dec 2025 (Expected)</EntryDate>
+              </EntryHeader>
+              <EntrySubtitle>Brigham Young University, Provo, UT</EntrySubtitle>
+              <EntryDescription>
+                <p>Minor: Mathematics</p>
+                <p>GPA: 4.0 | ACT: 35 | GRE: 170 Verbal</p>
+              </EntryDescription>
+            </CVEntry>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>Experience</SectionTitle>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Software Engineer Intern</EntryTitle>
+                <EntryDate>Apr 2024 – Sept 2024</EntryDate>
+              </EntryHeader>
+              <EntrySubtitle>Covr</EntrySubtitle>
+              <EntryDescription>
+                <ul>
+                  <li>Designed, developed, and deployed Go microservices from concept to production</li>
+                  <li>Streamlined notification infrastructure for nursing agency clients</li>
+                  <li>Built Python k-d tree simulations to model market coverage</li>
+                </ul>
+              </EntryDescription>
+            </CVEntry>
+
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Research Assistant</EntryTitle>
+                <EntryDate>Jan 2024 – Present</EntryDate>
+              </EntryHeader>
+              <EntrySubtitle>IDeA Labs, BYU</EntrySubtitle>
+              <EntryDescription>
+                <ul>
+                  <li>Contributed to two NLP research papers on LLM-based predictions and scene segmentation</li>
+                  <li>Built neural network pipelines and data workflows using PyTorch and CUDA</li>
+                </ul>
+              </EntryDescription>
+            </CVEntry>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>Research</SectionTitle>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Bradshaw, C., Miller, C., & Warnick, S. (2024)</EntryTitle>
+                <EntryDate>arXiv:2411.03486</EntryDate>
+              </EntryHeader>
+              <EntryDescription>
+                <p>Introduced a novel approach to using LLM output token probabilities as predictive distributions for US electoral outcomes.</p>
+              </EntryDescription>
+            </CVEntry>
+
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>DeBuse, M., Miller, C., Bradshaw, C., & Warnick, S. (2024)</EntryTitle>
+                <EntryDate>Submitted, TACL 2025</EntryDate>
+              </EntryHeader>
+              <EntryDescription>
+                <p>Designed and deployed a neural network to interpret story structure by treating embedded text as a continuous signal.</p>
+              </EntryDescription>
+            </CVEntry>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>Projects</SectionTitle>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>StyleCanvas (stylecanvasai.com)</EntryTitle>
+              </EntryHeader>
+              <EntryDescription>
+                <ul>
+                  <li>Architected full-stack AI model hosting platform using AWS EC2, Cognito, S3, DynamoDB, and Stripe</li>
+                  <li>Implemented autoscaling and secure subscription authentication with NestJS and Docker</li>
+                </ul>
+              </EntryDescription>
+            </CVEntry>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>Skills</SectionTitle>
+            <SkillsContainer>
+              <SkillCategory>
+                <h3>Programming Languages</h3>
+                <SkillList>
+                  <li>Go</li>
+                  <li>JavaScript/TypeScript</li>
+                  <li>Python</li>
+                  <li>C++</li>
+                </SkillList>
+              </SkillCategory>
+
+              <SkillCategory>
+                <h3>Technologies</h3>
+                <SkillList>
+                  <li>Docker & Kubernetes</li>
+                  <li>AWS (EC2, S3, Cognito, DynamoDB, SQS)</li>
+                  <li>React, NestJS, Gin</li>
+                  <li>PyTorch, CUDA</li>
+                </SkillList>
+              </SkillCategory>
+
+              <SkillCategory>
+                <h3>Concepts & Methods</h3>
+                <SkillList>
+                  <li>Bayesian Analysis</li>
+                  <li>Test-Driven Development</li>
+                  <li>Machine Learning Model Deployment</li>
+                  <li>Parallel Computing</li>
+                  <li>Algorithm Design</li>
+                </SkillList>
+              </SkillCategory>
+            </SkillsContainer>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>Languages</SectionTitle>
+            <LanguageSkill>
+              <h4>English</h4>
+              <ProgressBar><div style={{ width: '100%' }}></div></ProgressBar>
+            </LanguageSkill>
+            <LanguageSkill>
+              <h4>French</h4>
+              <ProgressBar><div style={{ width: '85%' }}></div></ProgressBar>
+            </LanguageSkill>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>Awards</SectionTitle>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Full-Ride Scholarship to BYU</EntryTitle>
+              </EntryHeader>
+            </CVEntry>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Phi Delta Phi (French Honor Society)</EntryTitle>
+              </EntryHeader>
+            </CVEntry>
+            <CVEntry>
+              <EntryHeader>
+                <EntryTitle>Los Alamos National Laboratory Applied Machine Learning Fellowship (2025)</EntryTitle>
+              </EntryHeader>
+            </CVEntry>
+          </CVSection>
+
+          <CVSection>
+            <SectionTitle>References</SectionTitle>
+            <p style={{ color: 'var(--text-secondary)' }}>Available upon request.</p>
+          </CVSection>
+        </CVContainer>
+      </Layout>
   );
 };
-
 export default CVPage;

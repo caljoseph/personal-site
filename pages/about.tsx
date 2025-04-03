@@ -242,7 +242,7 @@ const AboutPage = () => {
     >
       <AboutContainer>
         <TypewriterHeading text="About Me " />
-        
+
         <ProfileSection>
           <ProfileImage>
             <Image
@@ -250,38 +250,44 @@ const AboutPage = () => {
               alt="Caleb Bradshaw"
               fill
               sizes="300px"
-              style={{ objectFit: "cover", opacity: 1 }}
+              style={{ objectFit: 'cover', opacity: 1 }}
               priority
             />
           </ProfileImage>
-          
+
           <ProfileContent>
             <p>
-              Hello! I&apos;m Caleb Bradshaw, a passionate Computer Science student at Brigham Young University with a minor in Mathematics. 
-              I&apos;m dedicated to solving complex problems and building innovative solutions through code.
+              Hello! I&apos;m Caleb Bradshaw, a Computer Science student at
+              Brigham Young University with a minor in Mathematics. I love
+              solving complex problems through beautiful and functional code.
             </p>
-            
+
             <p>
-              My journey in computer science began when I was in high school, where I discovered my passion for 
-              programming through creating simple games and websites. This early interest evolved into a deep fascination 
-              with algorithms, data structures, and the mathematical foundations of computing.
+              My journey in computer science began when I was in high school,
+              where I discovered my passion for programming through creating
+              simple games and websites. This early interest evolved into a deep
+              fascination with algorithms, data structures, and the mathematical
+              foundations of computing.
             </p>
-            
+
             <p>
-              At BYU, I&apos;ve had the opportunity to explore various areas of computer science, from web development 
-              and mobile applications to artificial intelligence and computational theory. I&apos;m particularly drawn to 
-              the intersection of mathematics and computer science, exploring how mathematical concepts can be applied 
-              to solve computational problems efficiently.
+              At BYU, I&apos;ve had the opportunity to explore various areas of
+              computer science, from web development to artificial intelligence
+              and computational theory. I&apos;m particularly drawn to the
+              intersection of mathematics and computer science, with a
+              particular interest in Natural Language Processing and AI in
+              general.
             </p>
-            
+
             <p>
-              Outside of academics, I&apos;m an avid hiker, basketball player, and technology enthusiast. I believe in 
-              continuous learning and am always excited to take on new challenges and projects that push the boundaries 
-              of my knowledge and skills.
+              Outside of academics, I&apos;m a trail runner, skier, and rock
+              climber. I believe in continuous learning and am always excited to
+              take on new challenges and projects that push the boundaries of my
+              knowledge and skills.
             </p>
           </ProfileContent>
         </ProfileSection>
-        
+
         <SectionTitle>My Skills</SectionTitle>
         <SkillsGrid>
           <SkillCard>
@@ -290,129 +296,157 @@ const AboutPage = () => {
               Frontend
             </SkillTitle>
             <SkillList>
-              <li>React & React Native</li>
+              <li>React</li>
+              <li>Next.js</li>
               <li>TypeScript</li>
               <li>HTML5 & CSS3</li>
-              <li>Next.js</li>
-              <li>Styled Components</li>
             </SkillList>
           </SkillCard>
-          
+
           <SkillCard>
             <SkillTitle>
               <i className="fas fa-server"></i>
-              Backend
+              Backend & Cloud
             </SkillTitle>
             <SkillList>
+              <li>Go (Gin)</li>
+              <li>NestJS</li>
               <li>Node.js</li>
-              <li>Express</li>
-              <li>Python (Django, Flask)</li>
-              <li>RESTful APIs</li>
-              <li>GraphQL</li>
+              <li>PostgreSQL</li>
+              <li>DynamoDB</li>
+              <li>AWS (EC2, Cognito, S3, SQS, SageMaker)</li>
             </SkillList>
           </SkillCard>
-          
+
           <SkillCard>
             <SkillTitle>
-              <i className="fas fa-database"></i>
-              Database
+              <i className="fas fa-brain"></i>
+              ML & SciComp
             </SkillTitle>
             <SkillList>
-              <li>MongoDB</li>
-              <li>PostgreSQL</li>
-              <li>MySQL</li>
-              <li>Firebase</li>
-              <li>Redis</li>
+              <li>Python</li>
+              <li>PyTorch</li>
+              <li>Pandas & NumPy</li>
+              <li>CUDA</li>
+              <li>Bayesian Modeling</li>
             </SkillList>
           </SkillCard>
-          
+
           <SkillCard>
             <SkillTitle>
               <i className="fas fa-tools"></i>
-              Various
+              Tools & Systems
             </SkillTitle>
             <SkillList>
               <li>Git & GitHub</li>
               <li>Docker</li>
-              <li>AWS</li>
+              <li>Kubernetes</li>
               <li>CI/CD Pipelines</li>
-              <li>Unit Testing</li>
             </SkillList>
           </SkillCard>
         </SkillsGrid>
-        
+
         <SectionTitle>Education & Experience</SectionTitle>
         <TimelineContainer>
           <TimelineItem>
-            <TimelineDate>2021 - Present</TimelineDate>
-            <TimelineTitle>Bachelor of Science in Computer Science</TimelineTitle>
-            <TimelineSubtitle>Brigham Young University, Provo, UT</TimelineSubtitle>
-            <TimelineContent>
-              <p>Minor in Mathematics. Focusing on algorithm design, data structures, and software engineering principles.</p>
-              <p>Relevant coursework includes: Advanced Algorithms, Machine Learning, Database Systems, Web Development, and Linear Algebra.</p>
-            </TimelineContent>
-          </TimelineItem>
-          
-          <TimelineItem>
-            <TimelineDate>Summer 2023</TimelineDate>
-            <TimelineTitle>Software Engineering Intern</TimelineTitle>
-            <TimelineSubtitle>Tech Innovations Inc., Salt Lake City, UT</TimelineSubtitle>
-            <TimelineContent>
-              <p>Developed and maintained web applications using React and Node.js. Collaborated with a team of developers to implement new features and fix bugs.</p>
-              <p>Created RESTful APIs to connect frontend and backend services, improving data retrieval efficiency by 30%.</p>
-            </TimelineContent>
-          </TimelineItem>
-          
-          <TimelineItem>
-            <TimelineDate>2022 - Present</TimelineDate>
+            <TimelineDate>January 2024 – Present</TimelineDate>
             <TimelineTitle>Research Assistant</TimelineTitle>
-            <TimelineSubtitle>BYU Computer Science Department</TimelineSubtitle>
+            <TimelineSubtitle>IDeA Labs, BYU</TimelineSubtitle>
             <TimelineContent>
-              <p>Working with Dr. Johnson on algorithm optimization research, focusing on improving computational efficiency in graph-based problems.</p>
-              <p>Implemented and analyzed various algorithms, contributing to a research paper currently under review.</p>
+              <p>
+                Working on machine learning research in narrative modeling and
+                LLM-driven forecasting.
+              </p>
+              <p>
+                Contributed to a accpeted ACL paper on fiction scene
+                segmentation using signal-processing-inspired neural models.
+              </p>
             </TimelineContent>
           </TimelineItem>
-          
           <TimelineItem>
-            <TimelineDate>2021 - 2022</TimelineDate>
-            <TimelineTitle>Teaching Assistant</TimelineTitle>
-            <TimelineSubtitle>BYU Department of Computer Science</TimelineSubtitle>
+            <TimelineDate>April 2024 – September 2024</TimelineDate>
+            <TimelineTitle>Software Engineer Intern</TimelineTitle>
+            <TimelineSubtitle>Covr</TimelineSubtitle>
             <TimelineContent>
-              <p>Assisted professors in teaching introductory programming courses. Conducted lab sessions, graded assignments, and provided one-on-one help to students.</p>
-              <p>Developed supplementary teaching materials to help students better understand complex programming concepts.</p>
+              <p>
+                Designed, developed, and deployed Go microservices for a
+                notification system, from concept through production.
+              </p>
+              <p>
+                Simulated nursing agency market dynamics using Python and k-d
+                trees to support business strategy.
+              </p>
+            </TimelineContent>
+          </TimelineItem>
+          <TimelineItem>
+            <TimelineDate>2019 – Present</TimelineDate>
+            <TimelineTitle>
+              Bachelor of Science in Computer Science
+            </TimelineTitle>
+            <TimelineSubtitle>
+              Brigham Young University, Provo, UT
+            </TimelineSubtitle>
+            <TimelineContent>
+              <p>
+                Minor in Mathematics. GPA: 4.0. Focused on algorithm design,
+                machine learning, systems, and software engineering.
+              </p>
+              <p>
+                Relevant coursework: Advanced Algorithms, Machine Learning, Deep
+                Learning, NLP, System Design, and Linear Algebra.
+              </p>
             </TimelineContent>
           </TimelineItem>
         </TimelineContainer>
-        
+
         <ContactSection id="contact">
           <SectionTitle>Get In Touch</SectionTitle>
           <p style={{ color: 'var(--text-secondary)' }}>
-            I&apos;m always open to new opportunities, collaborations, or just a friendly chat about technology and innovation. Feel free to reach out through any of the channels below.
+            I&apos;m always open to new opportunities, collaborations, or just a
+            friendly chat about tech or back country skiing in the Wasatch.
           </p>
-          
+
           <ContactGrid>
             <ContactCard>
               <ContactCardTitle>Email</ContactCardTitle>
               <ContactInfo>
-                <a href="mailto:caleb.bradshaw@example.com">caleb.bradshaw@example.com</a>
-                <p>Feel free to email me for any inquiries or opportunities.</p>
+                <a href="mailto:calebjosephbradshaw@gmail.com">
+                  calebjosephbradshaw@gmail.com
+                </a>
               </ContactInfo>
             </ContactCard>
-            
+
             <ContactCard>
               <ContactCardTitle>Social Media</ContactCardTitle>
               <ContactInfo>
-                <p>Connect with me on professional networks:</p>
-                <a href="https://linkedin.com/in/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a
+                  href="https://www.linkedin.com/in/caleb-bradshaw"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://github.com/caljoseph"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.instagram.com/calebjbradshaw/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
               </ContactInfo>
             </ContactCard>
-            
+
             <ContactCard>
               <ContactCardTitle>Location</ContactCardTitle>
               <ContactInfo>
-                <p>Based in Provo, Utah</p>
+                <p>Based near Salt Lake City, Utah</p>
                 <p>Available for remote work and collaborations worldwide</p>
               </ContactInfo>
             </ContactCard>
