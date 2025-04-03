@@ -6,11 +6,11 @@ tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
 author: "Caleb Bradshaw"
 ---
 
-Backpropagation is one of the most important concepts in modern machine learning, especially for training neural networks. Despite its foundational role, it’s often treated like a black box. In this guide, we’ll break it down step-by-step, demystify the math, and implement a basic version in Python so you can see it working in action.
+Backpropagation is one of the most important concepts in modern machine learning, especially for training neural networks. In this guide, we’ll break it down step-by-step, demystify the math, and implement a basic version in Python so you can see it working in action.
 
 ## What is Backpropagation?
 
-Backpropagation is an algorithm used to update the weights of a neural network by propagating the error backward from the output layer to the input layer. The goal is to minimize a loss function — a measure of how far off the model's predictions are from the true values — by computing the gradients of the loss with respect to each weight and adjusting the weights in the opposite direction of the gradient.
+Backpropagation is an algorithm used in updating the weights of a neural network by propagating the error backward from the output layer to the input layer. The goal is to minimize a loss function — a measure of how far off the model's predictions are from the true values — by computing the gradients of the loss with respect to each weight and adjusting the weights in the opposite direction of the gradient.
 
 Think of it as the chain rule of calculus applied repeatedly across all layers of the network.
 
