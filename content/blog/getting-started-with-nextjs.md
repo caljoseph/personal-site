@@ -1,190 +1,169 @@
 ---
-title: "Getting Started with Next.js: A Comprehensive Guide"
+title: "Wrapping Your Head Around Backpropagation"
+date: "2025-04-02"
+description: "Let's go through "
+tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
+author: "Caleb Bradshaw"
+---
+---
+title: "Wrapping Your Head Around Backpropagation"
 date: "2023-03-15"
-description: "Learn how to build modern React applications with Next.js, from setup to deployment."
-tags: ["React", "Next.js", "Web Development", "JavaScript"]
+description: "A beginner-friendly walkthrough of how backpropagation works in neural networks — with math and Python."
+tags: ["ML Theory", "Python", "Algorithms", "Optimization"]
 author: "Caleb Bradshaw"
 ---
 
-# Getting Started with Next.js: A Comprehensive Guide
+# Wrapping Your Head Around Backpropagation
 
-Next.js has quickly become one of the most popular frameworks for building React applications. It provides a rich set of features out of the box, including server-side rendering, static site generation, API routes, and more. In this comprehensive guide, I'll walk you through everything you need to know to get started with Next.js.
+Backpropagation is one of the most important concepts in modern machine learning, especially for training neural networks. Despite its foundational role, it’s often treated like a black box. In this guide, we’ll break it down step-by-step, demystify the math, and implement a basic version in Python so you can see it working in action.
 
-## What is Next.js?
+## What is Backpropagation?
 
-Next.js is a React framework that enables server-side rendering, static site generation, and other performance optimizations for React applications. It was created by Vercel (formerly Zeit) and has gained significant traction in the React community due to its developer-friendly features and excellent performance characteristics.
+Backpropagation is an algorithm used to update the weights of a neural network by propagating the error backward from the output layer to the input layer. The goal is to minimize a loss function — a measure of how far off the model's predictions are from the true values — by computing the gradients of the loss with respect to each weight and adjusting the weights in the opposite direction of the gradient.
 
-Some key features of Next.js include:
+Think of it as the chain rule of calculus applied repeatedly across all layers of the network.
 
-- **Server-side rendering (SSR)**: Renders pages on the server for improved SEO and initial load performance
-- **Static site generation (SSG)**: Pre-renders pages at build time for optimal performance
-- **Incremental Static Regeneration**: Updates static pages after deployment without rebuilding the entire site
-- **API Routes**: Create API endpoints as part of your Next.js application
-- **File-based routing**: Automatically creates routes based on your file structure
-- **Built-in CSS and Sass support**: Import CSS files directly in your components
-- **Image optimization**: Automatically optimize and serve responsive images
+## The Building Blocks
 
-## Setting Up Your First Next.js Project
+To understand backpropagation, you need a grasp of:
 
-Getting started with Next.js is surprisingly easy. Here's how you can create your first project:
+- **Forward pass**: Computing the output from inputs through the network
+- **Loss function**: Measuring the error of the prediction
+- **Backward pass**: Using gradients to update weights
 
-```bash
-npx create-next-app my-next-app
-cd my-next-app
-npm run dev
-```
+Let’s go through each of these.
 
-This will create a new Next.js project in the `my-next-app` directory and start the development server. You can now access your application at `http://localhost:3000`.
+### 1. The Forward Pass
 
-## Understanding the Project Structure
-
-A typical Next.js project has the following structure:
+In a basic neural network with one hidden layer:
 
 ```
-my-next-app/
-  ├── pages/
-  │   ├── _app.js
-  │   ├── _document.js
-  │   ├── index.js
-  │   └── api/
-  ├── public/
-  ├── styles/
-  ├── components/
-  ├── next.config.js
-  ├── package.json
-  └── node_modules/
+Input → [Linear Transformation] → Hidden Layer → [Activation] → Output → Loss
 ```
 
-Here's what each directory/file is for:
+For a single data point, forward computation might look like:
 
-- **pages/**: This is where you define your application's routes. Each file corresponds to a route.
-- **pages/api/**: This is where you define your API routes.
-- **public/**: This directory is used for static assets like images, fonts, etc.
-- **styles/**: Contains your global styles.
-- **components/**: A place to store your React components.
-- **next.config.js**: Configuration file for Next.js.
+```python
+import numpy as np
 
-## Creating Pages and Routes
+# Sample input and true output
+x = np.array([[0.5], [0.1]])  # 2x1 input
+y_true = np.array([[1.0]])    # 1x1 true output
 
-One of the most powerful features of Next.js is its file-based routing system. To create a new page/route, simply add a new file to the `pages` directory:
+# Initialize weights and biases
+W1 = np.random.randn(3, 2)    # hidden layer weights (3 neurons, 2 inputs)
+b1 = np.random.randn(3, 1)
+W2 = np.random.randn(1, 3)    # output layer weights (1 output, 3 hidden neurons)
+b2 = np.random.randn(1, 1)
 
-```jsx
-// pages/about.js
-export default function About() {
-  return (
-    <div>
-      <h1>About Us</h1>
-      <p>This is the about page of our application.</p>
-    </div>
-  );
-}
+# Activation function
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+
+# Forward pass
+z1 = W1 @ x + b1
+a1 = sigmoid(z1)
+z2 = W2 @ a1 + b2
+y_pred = sigmoid(z2)
 ```
 
-This will automatically create a route at `/about` that renders this component.
+### 2. The Loss Function
 
-## Data Fetching Methods
+We’ll use Mean Squared Error (MSE) for simplicity:
 
-Next.js provides several methods for fetching data:
+```python
+def mse_loss(y_pred, y_true):
+    return 0.5 * np.square(y_pred - y_true).sum()
 
-### 1. getStaticProps (Static Site Generation)
-
-Use `getStaticProps` when the data required to render the page can be computed at build time:
-
-```jsx
-export default function Blog({ posts }) {
-  return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.id}>{post.title}</li>
-      ))}
-    </ul>
-  );
-}
-
-export async function getStaticProps() {
-  const res = await fetch('https://api.example.com/posts');
-  const posts = await res.json();
-
-  return {
-    props: {
-      posts,
-    },
-  };
-}
+loss = mse_loss(y_pred, y_true)
 ```
 
-### 2. getServerSideProps (Server-side Rendering)
+The `0.5` is a convenience — it cancels with the derivative of the square in backpropagation.
 
-Use `getServerSideProps` when you need to fetch data on each request:
+### 3. The Backward Pass (Backpropagation)
 
-```jsx
-export default function Dashboard({ user }) {
-  return <h1>Welcome, {user.name}!</h1>;
-}
+Now we compute gradients and propagate them backward:
 
-export async function getServerSideProps(context) {
-  const res = await fetch(`https://api.example.com/user/${context.params.id}`);
-  const user = await res.json();
+```python
+# Derivative of sigmoid
+def sigmoid_deriv(z):
+    return sigmoid(z) * (1 - sigmoid(z))
 
-  return {
-    props: {
-      user,
-    },
-  };
-}
+# Output layer gradients
+dL_dy_pred = y_pred - y_true                         # dL/dŷ
+dy_pred_dz2 = sigmoid_deriv(z2)                      # dŷ/dz2
+dz2_dW2 = a1.T                                        # dz2/dW2
+dz2_da1 = W2.T                                        # dz2/da1
+
+# Gradients for W2 and b2
+dL_dz2 = dL_dy_pred * dy_pred_dz2                    # dL/dz2
+dL_dW2 = dL_dz2 @ dz2_dW2                            # dL/dW2
+dL_db2 = dL_dz2                                      # dL/db2
+
+# Hidden layer gradients
+da1_dz1 = sigmoid_deriv(z1)
+dL_dz1 = dz2_da1 @ dL_dz2 * da1_dz1                  # dL/dz1
+dL_dW1 = dL_dz1 @ x.T                                # dL/dW1
+dL_db1 = dL_dz1                                      # dL/db1
 ```
 
-### 3. getStaticPaths (Dynamic Routes with Static Generation)
+### 4. Updating the Weights
 
-Use `getStaticPaths` with `getStaticProps` for dynamic routes that should be pre-rendered:
+Using a learning rate to adjust the weights:
 
-```jsx
-export default function Post({ post }) {
-  return (
-    <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-    </div>
-  );
-}
+```python
+lr = 0.1
 
-export async function getStaticPaths() {
-  const res = await fetch('https://api.example.com/posts');
-  const posts = await res.json();
-
-  const paths = posts.map((post) => ({
-    params: { id: post.id.toString() },
-  }));
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps({ params }) {
-  const res = await fetch(`https://api.example.com/posts/${params.id}`);
-  const post = await res.json();
-
-  return {
-    props: {
-      post,
-    },
-  };
-}
+W2 -= lr * dL_dW2
+b2 -= lr * dL_db2
+W1 -= lr * dL_dW1
+b1 -= lr * dL_db1
 ```
 
-## Deploying Your Next.js Application
+You’ve just performed one step of training using backpropagation!
 
-Next.js applications can be deployed to various platforms, but Vercel (the creators of Next.js) provides the most seamless experience. To deploy to Vercel:
+## Putting It Together in a Training Loop
 
-1. Push your code to a GitHub, GitLab, or Bitbucket repository
-2. Import your repository in the Vercel dashboard
-3. Vercel will automatically detect that it's a Next.js project and deploy it with the optimal configuration
+Here’s a full training loop to see this in action:
 
-You can also deploy to other platforms like Netlify, AWS, or your own server.
+```python
+for epoch in range(1000):
+    # Forward pass
+    z1 = W1 @ x + b1
+    a1 = sigmoid(z1)
+    z2 = W2 @ a1 + b2
+    y_pred = sigmoid(z2)
+    loss = mse_loss(y_pred, y_true)
 
-## Conclusion
+    # Backward pass
+    dL_dy_pred = y_pred - y_true
+    dy_pred_dz2 = sigmoid_deriv(z2)
+    dL_dz2 = dL_dy_pred * dy_pred_dz2
+    dL_dW2 = dL_dz2 @ a1.T
+    dL_db2 = dL_dz2
+    dL_dz1 = W2.T @ dL_dz2 * sigmoid_deriv(z1)
+    dL_dW1 = dL_dz1 @ x.T
+    dL_db1 = dL_dz1
 
-Next.js is a powerful framework that makes building modern React applications easier and more efficient. With its built-in features like server-side rendering, static site generation, and file-based routing, it provides an excellent developer experience while ensuring good performance for end users.
+    # Update weights
+    W2 -= lr * dL_dW2
+    b2 -= lr * dL_db2
+    W1 -= lr * dL_dW1
+    b1 -= lr * dL_db1
 
-This guide just scratches the surface of what's possible with Next.js. As you continue your journey, you'll discover even more features and patterns that can help you build better web applications.
+    if epoch % 100 == 0:
+        print(f"Epoch {epoch}, Loss: {loss:.4f}")
+```
 
-Happy coding!
+## Wrapping Up
+
+Backpropagation isn't magic — it’s just calculus, matrix multiplication, and bookkeeping. Once you understand the chain rule and how to compute gradients layer by layer, the whole thing becomes a mechanical process. Most libraries like PyTorch and TensorFlow handle it automatically with autograd, but knowing how it works helps you debug, optimize, and truly understand what your model is doing.
+
+Next steps:
+- Try implementing backpropagation for a network with ReLU instead of sigmoid
+- Extend it to multiple inputs (batch training)
+- Build a training loop for classification using cross-entropy loss
+
+You don’t need to memorize the math — you just need to *understand the flow*.
+
+Happy backpropagating.
