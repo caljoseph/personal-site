@@ -80,7 +80,7 @@ const ColorTypewriterHeading: React.FC<ColorTypewriterHeadingProps> = ({
                                                                                ],
                                                                                typingSpeed = 80,
                                                                                backspaceSpeed = 50,
-                                                                               pauseDuration = 1000,
+                                                                               pauseDuration = 750,
                                                                                postBackspacePause = 100, // Default pause after backspacing
                                                                                delay = 200
                                                                            }) => {

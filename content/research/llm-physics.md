@@ -1,7 +1,7 @@
 ---
 title: "A Physics Prediction Task to Evaluate LLM Reasoning"
 date: "2025-04-02"
-description: "A research project introducing a novel physics prediction benchmark for large language models"
+description: "A novel physics prediction benchmark for large language models"
 tags: ["LLMs", "Evaluation", "Physics", "Calibration", "Machine Learning"]
 authors: ["Caleb Bradshaw"]
 advisor: "Dr. Sean Warnick"

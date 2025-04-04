@@ -1,6 +1,6 @@
 const featured = {
   home: ['dbs-election', 'scene-segmentation', 'style-canvas'],
-  blog: ['getting-started-with-nextjs'],
+  blog: ['understanding-backpropagation'],
   research: ['llm-physics']
 };
 
