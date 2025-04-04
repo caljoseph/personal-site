@@ -62,12 +62,12 @@ const ColorTypewriterHeading: React.FC<ColorTypewriterHeadingProps> = ({
                                                                                initialName = "Caleb.",
                                                                                roles = [
                                                                                    {
-                                                                                       text: "a Student.",
-                                                                                       gradient: "linear-gradient(45deg, #8669bb, #a98df0)"
-                                                                                   },
-                                                                                   {
                                                                                        text: "a Developer.",
                                                                                        gradient: "linear-gradient(45deg, #6aa284, #8fd4b1)"
+                                                                                   },
+                                                                                   {
+                                                                                       text: "a Student.",
+                                                                                       gradient: "linear-gradient(45deg, #8669bb, #a98df0)"
                                                                                    },
                                                                                    {
                                                                                        text: "a Researcher.",
@@ -80,7 +80,7 @@ const ColorTypewriterHeading: React.FC<ColorTypewriterHeadingProps> = ({
                                                                                ],
                                                                                typingSpeed = 80,
                                                                                backspaceSpeed = 50,
-                                                                               pauseDuration = 1400,
+                                                                               pauseDuration = 1000,
                                                                                postBackspacePause = 100, // Default pause after backspacing
                                                                                delay = 200
                                                                            }) => {
