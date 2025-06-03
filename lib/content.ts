@@ -23,13 +23,13 @@ interface ContentItem {
   description: string;
   tags: string[];
   thumbnailUrl: string;
+  readingTime: string;
   content: string;
 }
 
 // Blog-specific fields
 export interface BlogPost extends ContentItem {
   author: string;
-  readingTime: string;
 }
 
 // Project-specific fields
@@ -70,6 +70,9 @@ function parseContentFile(type: ContentType, fileName: string): any {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContents);
 
+  // Calculate reading time for the post
+  const readingTime = calculateReadingTime(content);
+
   // Extract common fields with defaults
   return {
     id,
@@ -82,6 +85,7 @@ function parseContentFile(type: ContentType, fileName: string): any {
     tags: data.tags || [],
     thumbnailUrl: data.thumbnailUrl || "/images/placeholder.png",
     content,
+    readingTime,
     ...data // Include all other fields from the frontmatter
   };
 }
@@ -133,6 +137,7 @@ export function getContentById<T>(type: ContentType, id: string): T | null {
       tags: data.tags || [],
       thumbnailUrl: data.thumbnailUrl || `/images/placeholder.png`,
       content: processedContent,
+      readingTime: calculateReadingTime(markdownContent),
       ...data // Include all other fields from the frontmatter
     } as T;
   } catch (error) {
