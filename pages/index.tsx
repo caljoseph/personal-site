@@ -196,9 +196,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
                 date={item.formattedDate}
                 tags={item.tags}
                 type={type}
-                metaRight={
-                  type === 'blog' ? (item as BlogPost).readingTime : undefined
-                }
+                metaRight={item.readingTime}
                 links={[
                   {
                     text:
