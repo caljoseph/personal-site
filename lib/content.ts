@@ -72,7 +72,6 @@ function parseContentFile(type: ContentType, fileName: string): any {
 
   // Calculate reading time for the post
   const readingTime = calculateReadingTime(content);
-
   // Extract common fields with defaults
   return {
     id,
