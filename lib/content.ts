@@ -70,6 +70,10 @@ function parseContentFile(type: ContentType, fileName: string): any {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContents);
 
+  // Calculate reading time for blog posts
+  const readingTime =
+    type === 'blog' ? calculateReadingTime(content) : undefined;
+
   // Extract common fields with defaults
   return {
     id,
@@ -82,6 +86,7 @@ function parseContentFile(type: ContentType, fileName: string): any {
     tags: data.tags || [],
     thumbnailUrl: data.thumbnailUrl || "/images/placeholder.png",
     content,
+    ...(readingTime ? { readingTime } : {}),
     ...data // Include all other fields from the frontmatter
   };
 }
@@ -133,6 +138,7 @@ export function getContentById<T>(type: ContentType, id: string): T | null {
       tags: data.tags || [],
       thumbnailUrl: data.thumbnailUrl || `/images/placeholder.png`,
       content: processedContent,
+      ...(type === 'blog' ? { readingTime: calculateReadingTime(markdownContent) } : {}),
       ...data // Include all other fields from the frontmatter
     } as T;
   } catch (error) {
