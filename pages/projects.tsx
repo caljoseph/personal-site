@@ -125,6 +125,7 @@ const ProjectsPage = ({ projects }: ProjectsPageProps) => {
                         date={project.formattedDate}
                         tags={project.technologies || []}
                         type="project"
+                        metaRight={project.readingTime}
                         links={[
                           {
                             text: "Details",

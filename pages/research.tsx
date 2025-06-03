@@ -346,6 +346,7 @@ const ResearchPage = ({ researchItems, featuredResearch }: ResearchPageProps) =>
                     <span>Advisor: <span className="highlight">{research.advisor}</span></span>
                   )}
                   <span>Period: <span className="highlight">{research.formattedDate}</span></span>
+                  <span>{research.readingTime}</span>
                   {research.status && (
                     <span>Status: <span className="highlight">{research.status}</span></span>
                   )}
@@ -436,6 +437,7 @@ const ResearchPage = ({ researchItems, featuredResearch }: ResearchPageProps) =>
                     <span>Event: <span className="highlight">{presentation.venue}</span></span>
                   )}
                   <span>Date: <span className="highlight">{presentation.formattedDate}</span></span>
+                  <span>{presentation.readingTime}</span>
                   <span>Type: <span className="highlight">Presentation</span></span>
                 </ResearchMeta>
                 <ResearchDescription>
