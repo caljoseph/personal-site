@@ -7,7 +7,7 @@ import CTAButton from "@/components/buttons/CTAButton";
 import { GetStaticProps } from 'next';
 import { getFeaturedContent, BlogPost, Project, Research } from '@/lib/content';
 import ContentCard from '@/components/ContentCard';
-import ColorTypewriterHeading from "@/components/ColorTypewriterHeading";
+import TypewriterHeading from "@/components/TypewriterHeading";
 
 const HeroSection = styled.section`
   display: flex;
@@ -31,15 +31,6 @@ const HeroContent = styled.div`
   max-width: 800px;
   width: 100%;
   overflow-x: hidden;
-`;
-
-const HeroTitle = styled.h1`
-  font-size: 3.5rem;
-  margin-bottom: 1.5rem;
-
-  @media (max-width: 768px) {
-    font-size: 2.5rem;
-  }
 `;
 
 const HeroSubtitle = styled.h2`
@@ -165,7 +156,7 @@ export default function HomePage({ featuredContent }: HomePageProps) {
     >
       <HeroSection>
         <HeroContent>
-          <ColorTypewriterHeading delay={600} />
+          <TypewriterHeading text={"Hi there! I'm Caleb."} />
           <HeroSubtitle>
             <p>
               CS and Mathematics @ <span className="byu">BYU</span>
