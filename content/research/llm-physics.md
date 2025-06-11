@@ -80,7 +80,3 @@ Physics problems offer a structured yet diverse domain where grounded reasoning 
 - Combine physics simulation engines to generate grounded problem instances.
 - Investigate fine-tuning or post-hoc calibration techniques for improving confidence accuracy.
 - Release the benchmark as an open-source toolkit for reproducible evaluation.
-
-## Acknowledgments
-
-This research is conducted in the Machine Learning and Systems Lab at BYU, with support from lab peers and infrastructure resources provided by the BYU College of Physical and Mathematical Sciences.

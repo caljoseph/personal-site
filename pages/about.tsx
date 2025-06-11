@@ -187,8 +187,6 @@ const TimelineContent = styled.div`
 `;
 
 const ContactSection = styled.section`
-  margin-top: 4rem;
-  padding-top: 4rem;
   border-top: 1px solid var(--border);
 `;
 
@@ -262,28 +260,24 @@ const AboutPage = () => {
             <p>
               Hello! I&apos;m Caleb Bradshaw, a Computer Science student at
               Brigham Young University with a minor in Mathematics. I love
-              solving complex problems through beautiful and functional code.
+              solving problems through beautiful and functional code.
             </p>
 
             <p>
               My journey in computer science began when I was in high school,
               where I discovered my passion for programming through creating
-              simple games and websites. This early interest evolved into a deep
-              fascination with algorithms, data structures, and the mathematical
-              foundations of computing.
+              simple games and websites.
             </p>
 
             <p>
               At BYU, I&apos;ve had the opportunity to explore various areas of
               computer science, from web development to artificial intelligence
-              and computational theory. I&apos;m particularly drawn to the
-              intersection of mathematics and computer science, with a
-              particular interest in Natural Language Processing and AI in
+              and computational theory. I&apos;m particularly drawn to Natural Language Processing and AI in
               general.
             </p>
 
             <p>
-              Outside of academics, I&apos;m a trail runner, skier, and rock
+              Outside of academics, I&apos;m a trail runner, back country skier, and rock
               climber. I believe in continuous learning and am always excited to
               take on new challenges and projects that push the boundaries of my
               knowledge and skills.
@@ -406,7 +400,7 @@ const AboutPage = () => {
           <SectionTitle>Get In Touch</SectionTitle>
           <p style={{ color: 'var(--text-secondary)' }}>
             I&apos;m always open to new opportunities, collaborations, or just a
-            friendly chat about tech or back country skiing in the Wasatch.
+            friendly chat.
           </p>
 
           <ContactGrid>
@@ -450,7 +444,6 @@ const AboutPage = () => {
               <ContactCardTitle>Location</ContactCardTitle>
               <ContactInfo>
                 <p>Based near Salt Lake City, Utah</p>
-                <p>Available for remote work and collaborations worldwide</p>
               </ContactInfo>
             </ContactCard>
           </ContactGrid>
