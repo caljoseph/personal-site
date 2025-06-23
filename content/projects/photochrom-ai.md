@@ -36,9 +36,7 @@ I used the [Library of Congress Photochrom Collection](https://www.loc.gov/pictu
 The collection spans:
 - Over 6,000 scenes from Europe and the Middle East
 - 500+ images from North America
-- Alpine landscapes, bustling city centers, and quiet rural life
-
-All of it perfectly suited to teaching a model what a “photochrom-style” image should look like.
+- Alpine landscapes, city centers, and rural life
 
 ---
 
@@ -62,20 +60,12 @@ PyTorch Lightning abstracted away most of the distributed training complexity. H
 
 ## 🖥️ HPC Training
 
-This was my first serious experience using a university supercomputer—and it ruled. I trained across 4 nodes with 8 NVIDIA H100s each, which meant I had to:
+This was my first serious experience using BYU's supercomputer. I trained across 4 nodes with 8 NVIDIA H100s each, which meant I had to:
 
 - Write efficient SLURM job scripts
 - Think about data pipelines and I/O bottlenecks
 - Schedule jobs and resume training from checkpoints
 - Monitor everything remotely
-
-```bash
-# SLURM job
-bash scripts/run_slurm.sh unet_large
-
-# Launch distributed training
-python training/train.py trainer.devices=4 trainer.strategy=ddp
-```
 
 Learning the HPC ecosystem gave me a whole new appreciation for real-world ML deployment.
 
@@ -109,4 +99,4 @@ That said, the model consistently outputs images that feel like photochroms—sl
 - **Reproducibility**: Modular configs, logging, and tracking make iteration easier
 - **History**: Honestly, a lot about lithographic printing and early photographic methods
 
-This project isn’t production-ready, but it’s been a perfect blend of deep learning, historical curiosity, and technical challenge. Plus, now I can generate photochrom-style images automatically, which still feels a little magical.
+This project isn’t production-ready, but it’s been an interesting technical challenge.
