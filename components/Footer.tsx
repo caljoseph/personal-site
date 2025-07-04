@@ -186,10 +186,6 @@ const Footer: React.FC = () => {
           </FooterList>
         </FooterSection>
       </FooterContent>
-      
-      <Copyright>
-        <p>© {new Date().getFullYear()} Caleb Bradshaw. All rights reserved.</p>
-      </Copyright>
     </FooterContainer>
   );
 };
